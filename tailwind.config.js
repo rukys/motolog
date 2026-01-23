@@ -15,7 +15,16 @@ module.exports = {
       softGrey: '#f9f9f9',
       darkGrey: '#6e6e6e',
     },
-    fontFamily: {},
+    fontFamily: {
+      montserrat: ['Montserrat-Regular'],
+      montserratMedium: ['Montserrat-Medium'],
+      montserratSemiBold: ['Montserrat-SemiBold'],
+      montserratBold: ['Montserrat-Bold'],
+      montserratExtraBold: ['Montserrat-ExtraBold'],
+      montserratLight: ['Montserrat-Light'],
+      montserratExtraLight: ['Montserrat-ExtraLight'],
+      montserratThin: ['Montserrat-Thin'],
+    },
     extend: {},
   },
 };
