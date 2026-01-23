@@ -8,6 +8,18 @@ PODS:
   - hermes-engine (0.79.0):
     - hermes-engine/Pre-built (= 0.79.0)
   - hermes-engine/Pre-built (0.79.0)
+  - libwebp (1.5.0):
+    - libwebp/demux (= 1.5.0)
+    - libwebp/mux (= 1.5.0)
+    - libwebp/sharpyuv (= 1.5.0)
+    - libwebp/webp (= 1.5.0)
+  - libwebp/demux (1.5.0):
+    - libwebp/webp
+  - libwebp/mux (1.5.0):
+    - libwebp/demux
+  - libwebp/sharpyuv (1.5.0)
+  - libwebp/webp (1.5.0):
+    - libwebp/sharpyuv
   - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
@@ -1332,6 +1344,34 @@ PODS:
     - React-jsiexecutor
     - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
+  - react-native-date-picker (5.0.13):
+    - React-Core
+  - react-native-image-picker (8.2.1):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.11.18.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - react-native-safe-area-context (5.6.2):
+    - React-Core
   - React-NativeModulesApple (0.79.0):
     - glog
     - hermes-engine
@@ -1654,6 +1694,100 @@ PODS:
     - React-logger (= 0.79.0)
     - React-perflogger (= 0.79.0)
     - React-utils (= 0.79.0)
+  - RNCAsyncStorage (2.2.0):
+    - React-Core
+  - RNFastImage (8.6.3):
+    - React-Core
+    - SDWebImage (~> 5.11.1)
+    - SDWebImageWebPCoder (~> 0.8.4)
+  - RNGestureHandler (2.30.0):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.11.18.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - RNNotifee (9.1.8):
+    - React-Core
+    - RNNotifee/NotifeeCore (= 9.1.8)
+  - RNNotifee/NotifeeCore (9.1.8):
+    - React-Core
+  - RNPermissions (5.4.4):
+    - React-Core
+  - RNScreens (4.18.0):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.11.18.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-RCTImage
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - RNSVG (15.15.1):
+    - React-Core
+  - RNVectorIcons (10.3.0):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.11.18.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
+  - SDWebImageWebPCoder (0.8.5):
+    - libwebp (~> 1.0)
+    - SDWebImage/Core (~> 5.10)
   - SocketRocket (0.7.1)
   - Yoga (0.0.0)
 
@@ -1698,6 +1832,9 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
+  - react-native-date-picker (from `../node_modules/react-native-date-picker`)
+  - react-native-image-picker (from `../node_modules/react-native-image-picker`)
+  - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-oscompat (from `../node_modules/react-native/ReactCommon/oscompat`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -1729,10 +1866,21 @@ DEPENDENCIES:
   - ReactAppDependencyProvider (from `build/generated/ios`)
   - ReactCodegen (from `build/generated/ios`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - RNFastImage (from `../node_modules/react-native-fast-image`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - "RNNotifee (from `../node_modules/@notifee/react-native`)"
+  - RNPermissions (from `../node_modules/react-native-permissions`)
+  - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
+    - libwebp
+    - SDWebImage
+    - SDWebImageWebPCoder
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -1813,6 +1961,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   React-microtasksnativemodule:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/microtasks"
+  react-native-date-picker:
+    :path: "../node_modules/react-native-date-picker"
+  react-native-image-picker:
+    :path: "../node_modules/react-native-image-picker"
+  react-native-safe-area-context:
+    :path: "../node_modules/react-native-safe-area-context"
   React-NativeModulesApple:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios"
   React-oscompat:
@@ -1875,6 +2029,22 @@ EXTERNAL SOURCES:
     :path: build/generated/ios
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNFastImage:
+    :path: "../node_modules/react-native-fast-image"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
+  RNNotifee:
+    :path: "../node_modules/@notifee/react-native"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
+  RNScreens:
+    :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -1886,6 +2056,7 @@ SPEC CHECKSUMS:
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
   glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
   hermes-engine: cd4bd90f051e3658c83cc00e87c603dfe1b75947
+  libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
   RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: c147f8912f768e5eedbc5f115b2b223d007d9fe3
   RCTRequired: a71a7e9efd6546704d5abc683e0b68fcaa759861
@@ -1895,62 +2066,75 @@ SPEC CHECKSUMS:
   React-Core: 76b58f53f3477414ba956db05c609478eb12f447
   React-CoreModules: 10fdcacad4777e0765d386dfe27cf2838cca41ed
   React-cxxreact: 960db89a5ed88467cac76b1d7bc9b14aa86858da
-  React-debug: 87ee65859590520301d17e91daa92f7f36308875
-  React-defaultsnativemodule: 4eba45f340a81b26f1b6815d0c41528af072aa5f
-  React-domnativemodule: d6bbeaaccdfd375acb0c86c6759487e6809529ca
-  React-Fabric: da6035d3aee3a9bc86507ce359fb9cdafc101901
-  React-FabricComponents: fbe9ab3079399fda9909b130bb17fb41b716ac18
-  React-FabricImage: 30fbcc4c31a0d1f41e07a2bb0a002b383706653b
-  React-featureflags: 12a3dddd2db68c28e0a8149104db4a14dda6a48b
-  React-featureflagsnativemodule: 62c5bc8600a21461d0126ed3315aeed889a2b0f2
-  React-graphics: e4e84cb4e81190ac09667503b99f5cb549da4230
+  React-debug: 76f875d0a6a6ef463d732493082679f45fefcbbd
+  React-defaultsnativemodule: 0c28ee2b42ab8b75d53663c9ac0aef00f6e354dd
+  React-domnativemodule: dc2d8334b13b09460768f65cdb96db31ef383ce4
+  React-Fabric: ccc50e9e05370b272064a4125b51ffe809f346a9
+  React-FabricComponents: f2ec421bf72670b988b7c2fcf51417f5625e06e0
+  React-FabricImage: 124713f4d5536160f2cecdb0dc0dd2d10e1b0059
+  React-featureflags: c0ea0c9e37b455d26e138c721f45f332d8bf6521
+  React-featureflagsnativemodule: c49cc58fab240047eab565e7e18bd8b36a341d48
+  React-graphics: b41f8426f6daf6656f63e98117d179ae0d3c793a
   React-hermes: 47c5e6c7a7dd27887350983c69e26e1c84fe8be4
-  React-idlecallbacksnativemodule: 849ed198c6a73d64356c8ba28e7c081e59702863
-  React-ImageManager: 9df30bb88762af86af915b1def8ca4ca0be4a1e4
-  React-jserrorhandler: 2f88164ac412cab85e9601582076207e755d8950
+  React-idlecallbacksnativemodule: 9665b2e954c1a791f9d632053d9e16ab49de3925
+  React-ImageManager: 3cdd059a29ebb5700f8ae2048f52dc61c7fb7722
+  React-jserrorhandler: 56714e38044b09ad82947cc2df4f55404c140208
   React-jsi: 2625a0239285f342d589e6dcd0540b1324300ccc
   React-jsiexecutor: f00e3bcc44e5fe84cd329c8e608103ec036d867b
-  React-jsinspector: 2413a2b84c928ad8a1d23aff2ab3f0d712f8e9f8
-  React-jsinspectortracing: a12a081d4ed1a0337398923f96c35d9ecd98bc5f
-  React-jsitooling: a9e9230c041d90e7bca642f484c727b577661180
-  React-jsitracing: 48494521ee789044619b4d286e1f58e541aabd3f
+  React-jsinspector: dccc445c0ffd1efa339fa07a0d656b6b54f40178
+  React-jsinspectortracing: 5359831eff25560e83e24d9b2366ec6eb0794e01
+  React-jsitooling: a0344965e0c47595df9318ebbf00a152bf438f30
+  React-jsitracing: bad24910c58b9e1c0dd9a6124d53a50d7e10f4bd
   React-logger: a5edba66e28edd1ef973971a2ec5d531eb8621ea
-  React-Mapbuffer: 2ef4d104cd7426fdbe4dbb283fcab8235ea92cc8
-  React-microtasksnativemodule: a2d19a42269e02a7a86ab1c51fa3a4fa63be00ba
-  React-NativeModulesApple: f8c91c74d5d223944c7b7fdeb0695d8ee73f899c
+  React-Mapbuffer: 1b42bfae5831d01bcea685f95621b00ce6fdbeb3
+  React-microtasksnativemodule: 16daaf4d4722c200c8c16947b35a56a983093c9b
+  react-native-date-picker: 2eca217a8fb09c517f5bb6b23978718c6cec59ec
+  react-native-image-picker: 95948cfcac306acef77a31d6e7de4edc78450ead
+  react-native-safe-area-context: 6c8805194166a9d6b3e53ba69ca76756c9bfb052
+  React-NativeModulesApple: 8ecbbc15f14a567821682d37b4b18896b1cc213b
   React-oscompat: faff1df234d57a7368b56e9642222dde9eb9f422
   React-perflogger: 59c434b6ab0741baa4cdc589ba4278889e3fae18
-  React-performancetimeline: 7e299c5bfb9a3863a44962b316c79192303cd9d1
+  React-performancetimeline: 608357489cc6d73b6c63f2f88bade4b68d65d9e5
   React-RCTActionSheet: 9ce0ed65693f0faa48e7ab0f60828251af7564f5
   React-RCTAnimation: 9c5761782eb9da8ba9ea657be5458aaf81aa3bb8
   React-RCTAppDelegate: c588868e5a3501944d0972ae78e74f992be7179a
   React-RCTBlob: 04a057106b154afecf59ab7ab1e9316573871143
-  React-RCTFabric: d12cd633486b6efb999ea71804b77a27a1829570
+  React-RCTFabric: 81f762dadab002f2cc827bb4a889a45fb3311e05
   React-RCTFBReactNativeSpec: bf907f670485d9bba3ea2ce601a9634d81c5bc65
   React-RCTImage: b51ffeb7b6e76e774df4912b605b49eaa75cd3bf
   React-RCTLinking: 9ea3c2c6e280fb5a7a9f243a41bbf654bc865bb9
   React-RCTNetwork: 3cc24a5bb1f672e6fb9a324f4412e21eee7ae8db
-  React-RCTRuntime: a91a669398f6e8aee6ec6f31fde086a78362aa26
+  React-RCTRuntime: b4069891c0fb38259d0d620313f8324a4321c045
   React-RCTSettings: d0bc51287173ce2ab6b05a101be9a906eafa56a5
   React-RCTText: 0a40448638481b8c16f23e73ffd8bff8dcab7ce4
   React-RCTVibration: a001257cac1a37da35625622968725d6d4bde519
-  React-rendererconsistency: 994a5556edf3114dc9b757f17a32996a00e650c4
-  React-renderercss: 9a00b0a563c853c5b31ebc0f29255b5aa1cf96df
-  React-rendererdebug: cb5dbddd02f3f3552e8c8710a574d45eaffa31a6
-  React-rncore: cb66e8753cd847098c378c4af319ece0c56a5cc9
-  React-RuntimeApple: 6e123abda4f7e0e1eb09f6ca2c4d4e465147724c
-  React-RuntimeCore: cd06ef8c7200920cf45861f43ee794eb4d444bc5
+  React-rendererconsistency: 563cb6a482f85364a379255ad6a6fd2b4df2bd6e
+  React-renderercss: bceff3b77d39f4c5f02fa331a50923ba6204d438
+  React-rendererdebug: 77e9277b89a81bbf04ce27d0cf8384ead00e1589
+  React-rncore: 43b732a87cee35ee8d3c0751851e0c0098dddbf6
+  React-RuntimeApple: 3169b142885ea46f426b532c503287d553fc2afc
+  React-RuntimeCore: fdec0c82b85c57fffc1bf1a93575768610f5faf1
   React-runtimeexecutor: a8931ab42571aba415ed3386ec302e0ab5301f8f
-  React-RuntimeHermes: fafa51f87d46f4115b027c4b5d73f02d9b25865f
-  React-runtimescheduler: c2c83043b48786d8882c53dcf5d9e3640a782661
-  React-timing: f379c1e5064513ce4ad6fe921b0f4e2b08463a40
-  React-utils: 580be21e5e2ec17b0ac68161c2b4e33593af7ecc
+  React-RuntimeHermes: 96c2df5496cffb82e0e0e75a07707e3c7c8374e7
+  React-runtimescheduler: 48f6405be9e40bd7f0a977c63a3873ecb5315c17
+  React-timing: bfcc9cbb8679fac884ea344102ebb1498d75fb9e
+  React-utils: 098b91d90a32e75eb30171aca08deece0979c8ab
   ReactAppDependencyProvider: 7f5052913dd72a0e84ca95973f9f8bc97f2c5b95
-  ReactCodegen: 16700ce5938fd79c1ff4c5b5735f10830f2e6bd3
-  ReactCommon: 1257efa9d0b07517d8b79bb4055eaefac1204807
+  ReactCodegen: 432ab44c696f7dc8ef0641281012ad3c191e3f89
+  ReactCommon: 4f0e046f6c9abecc017956dbfdbaddd331afa0ea
+  RNCAsyncStorage: b44e8a4e798c3e1f56bffccd0f591f674fb9198f
+  RNFastImage: 462a183c4b0b6b26fdfd639e1ed6ba37536c3b87
+  RNGestureHandler: 38fe57ac2140d180551591a16bd899d2343724bb
+  RNNotifee: 5e3b271e8ea7456a36eec994085543c9adca9168
+  RNPermissions: 20c5b2e029c16ee579cce1878d598871f1174ddd
+  RNScreens: 1ab3bef959f7cd731ad5a1d6a66ea580a05d62a2
+  RNSVG: 6bbec7f825ac9131971858f98a0a40755327191e
+  RNVectorIcons: 666d09c4d1c0e890c8b0c1609ffe1f1edf3ebaa9
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SDWebImageWebPCoder: 908b83b6adda48effe7667cd2b7f78c897e5111d
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  Yoga: 9773f1327b258fa449988c2e42fbb7cbdf655d96
+  Yoga: df4e6df930f6d93d6647c10c61d4d6fe5a694805
 
-PODFILE CHECKSUM: 410a22cc263e371890ecf8ad3c0fc5c8829a5a21
+PODFILE CHECKSUM: f5cd02f092127441d26f837cf83eb84e73561330
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2
