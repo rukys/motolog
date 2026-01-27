@@ -3,7 +3,9 @@ module.exports = {
     screens: {},
     colors: {
       primary: '#ff6600',
+      primarySoft: '#33231d',
       secondary: '#292929',
+      dark: '#121212',
       accent: '#ff6600',
       error: '#ff0000',
       warning: '#ff9800',
