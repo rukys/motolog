@@ -1,97 +1,88 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🏍️ MotoLog: Smart Motorcycle Maintenance Tracker
 
-# Getting Started
+![MotoLog Banner](https://img.shields.io/badge/Status-Beta_V1.0-ff6600?style=for-the-badge) ![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Realm](https://img.shields.io/badge/Realm_Database-39477F?style=for-the-badge&logo=realm&logoColor=white)
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+**MotoLog** is a local-first, blazing fast React Native application designed specifically for bikers to keep track of their motorcycle's service history, monitor parts lifespan, and manage expenses seamlessly. Built with a stunning dark-mode tailored aesthetic, MotoLog acts as your proactive virtual garage assistant.
 
-## Step 1: Start Metro
+---
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 📸 Screenshots
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+<p align="center">
+  <img src="screenshots/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202026-04-13%20at%2014.33.36.png" width="23%" />
+  <img src="screenshots/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202026-04-13%20at%2014.33.43.png" width="23%" />
+  <img src="screenshots/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202026-04-13%20at%2014.33.49.png" width="23%" />
+  <img src="screenshots/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202026-04-13%20at%2014.34.00.png" width="23%" />
+</p>
 
-```sh
-# Using npm
-npm start
+---
 
-# OR using Yarn
-yarn start
-```
+## ✨ Key Features
 
-## Step 2: Build and run your app
+- **Blazing Fast Offline-First Database**: Powered by Realm DB, MotoLog works 100% offline. No loading spinners, no waiting for server responses. Your data stays securely on your device.
+- **Smart Parts Health Tracker**: Intelligent algorithm that parses your service history to calculate the lifespan of your Engine Oil, Brake Pads, and V-Belt/Chain based on your latest Odometer reading.
+- **Multi-Garage Management**: Do you own more than one motorcycle? Easily switch between multiple profiles, each maintaining its own isolated service history and stats.
+- **Expense Breakdown**: Visualizes your spending habits. Instantly know your total maintenance costs and your average monthly expense.
+- **Native Push Notifications**: Never miss an oil change again! Set up time and distance-based local reminders powered by `@notifee`. The app will alert you safely even when closed.
+- **Quick Odo Update**: Effortlessly update your motorcycle's current KM reading with a frictionless modal directly from the Home Screen.
+- **Premium Aesthetics**: Crafted entirely with `twrnc` (Tailwind for React Native), it utilizes a cohesive, sleek dark-mode design with modern typography and interactive native Sliders.
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+---
 
-### Android
+## 🛠️ Technology Stack
 
-```sh
-# Using npm
-npm run android
+- **Framework**: [React Native](https://reactnative.dev/) (v0.79.0)
+- **Local Database**: [@realm/react](https://github.com/realm/realm-js)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand) (with AsyncStorage Persistence)
+- **Styling**: [twrnc](https://github.com/vadimdemedes/twrnc) (Tailwind CSS for React Native)
+- **Navigation**: React Navigation V7 (Stack & Bottom Tabs)
+- **Icons**: [Lucide React Native](https://lucide.dev/)
+- **Native Notifications**: [@notifee/react-native](https://notifee.app/)
 
-# OR using Yarn
-yarn android
-```
+---
 
-### iOS
+## 🚀 Getting Started
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+### Prerequisites
+Make sure you have set up your React Native environment as per the [official documentation](https://reactnative.dev/docs/environment-setup).
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+### Installation
 
-```sh
-bundle install
-```
+1. **Clone the repository** (if applicable) and navigate to the project directory:
+   ```bash
+   cd MotoLog
+   ```
 
-Then, and every time you update your native dependencies, run:
+2. **Install JavaScript dependencies**:
+   ```bash
+   yarn install
+   # or
+   npm install
+   ```
 
-```sh
-bundle exec pod install
-```
+3. **Install Native iOS Dependencies**:
+   ```bash
+   cd ios && pod install && cd ..
+   ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+### Running the Application
 
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
+**For iOS:**
+```bash
 yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+**For Android:**
+```bash
+yarn android
+```
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+---
 
-## Step 3: Modify your app
+## 📝 Roadmap (V2.0 Ideas)
+- ⛽ **Fuel Tracker**: Monitor fuel consumption (KM/Liter).
+- ☁️ **Data Backup & Restore**: Export encrypted JSON backups to easily migrate data between devices.
+- 📊 **Advanced Analytics Screen**: Deep dive into spending categories through gorgeous interactive charts.
 
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+---
+_Crafted with passion for riders, by riders._ 🏍️💨

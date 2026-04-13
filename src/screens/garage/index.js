@@ -1,10 +1,29 @@
-import { View, Text, TouchableOpacity } from 'react-native';
-import React from 'react';
-import { Container, EmptyGarage } from '../../components';
+import {View, Text, TouchableOpacity, FlatList} from 'react-native';
+import React, {useCallback} from 'react';
+import {Container, EmptyState, MotorcycleCard} from '../../components';
 import tw from '../../../tailwind';
-import { Plus } from 'lucide-react-native';
+import {Plus, Bike} from 'lucide-react-native';
+import {useMotorcycle} from '../../hooks';
 
-export default function GarageScreen() {
+export default function GarageScreen({navigation}) {
+  const {motorcycles, motorcycleCount, deleteMotorcycle} = useMotorcycle();
+
+  const handleDelete = useCallback(motorcycleId => {
+    deleteMotorcycle(motorcycleId);
+  }, [deleteMotorcycle]);
+
+  const renderItem = useCallback(({item}) => (
+    <MotorcycleCard
+      motorcycle={item}
+      onPress={() =>
+        navigation.navigate('MotorcycleDetailScreen', {
+          motorcycleId: item._id.toHexString(),
+        })
+      }
+      onDelete={handleDelete}
+    />
+  ), [navigation, handleDelete]);
+
   return (
     <Container>
       <View style={tw.style('flex-row items-center mx-6')}>
@@ -13,10 +32,11 @@ export default function GarageScreen() {
             My Garage
           </Text>
           <Text style={tw.style('text-sm font-montserrat text-darkGrey')}>
-            0 motorcycles
+            {motorcycleCount} {motorcycleCount === 1 ? 'motorcycle' : 'motorcycles'}
           </Text>
         </View>
         <TouchableOpacity
+          onPress={() => navigation.navigate('MotorcycleScreen')}
           style={tw.style(
             'bg-primary p-2 px-6 rounded-xl flex-row items-center',
           )}>
@@ -27,9 +47,27 @@ export default function GarageScreen() {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={tw.style('flex-1 items-center justify-center')}>
-        <EmptyGarage />
-      </View>
+
+      {motorcycleCount === 0 ? (
+        <View style={tw.style('flex-1 items-center justify-center')}>
+          <EmptyState
+            icon={Bike}
+            title="No motorcycle yet"
+            buttonText="Add your first one"
+            buttonStyle={tw.style('bg-transparent p-2')}
+            buttonTextStyle={tw.style('text-primary')}
+            onPressButton={() => navigation.navigate('MotorcycleScreen')}
+          />
+        </View>
+      ) : (
+        <FlatList
+          data={motorcycles}
+          renderItem={renderItem}
+          keyExtractor={item => item._id.toHexString()}
+          contentContainerStyle={tw.style('mx-6 mt-6 pb-6')}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </Container>
   );
 }

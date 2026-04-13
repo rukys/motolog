@@ -31,6 +31,12 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>MotoLog needs camera access to take photos of your motorcycle and service receipts.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>MotoLog needs photo library access to select photos of your motorcycle and service receipts.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>MotoLog needs permission to save photos to your photo library.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>
 	<key>UILaunchStoryboardName</key>

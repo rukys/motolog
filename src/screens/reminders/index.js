@@ -1,27 +1,60 @@
 import React from 'react';
-import { ScrollView, Switch, Text, View } from 'react-native';
+import {
+  ScrollView,
+  Switch,
+  Text,
+  TouchableOpacity,
+  View,
+  Alert,
+} from 'react-native';
 import tw from '../../../tailwind';
-import { Container } from '../../components';
+import { Container, Slider } from '../../components';
 import { Bell, Clock4, Info, Route } from 'lucide-react-native';
+import { globalStore } from '../../stores';
+import { useQuery } from '@realm/react';
+import { Motorcycle } from '../../models/motorcycle';
+import {
+  requestNotificationPermission,
+  // sendTestNotification,
+  cancelAllReminders,
+} from '../../utils/notifications';
 
 export default function RemindersScreen() {
-  const [isReminderEnabled, setIsReminderEnabled] = React.useState(true);
-  const [distanceInterval, setDistanceInterval] = React.useState(true);
-  const [timeInterval, setTimeInterval] = React.useState(true);
+  const {
+    isReminderEnabled,
+    setIsReminderEnabled,
+    isDistanceReminderEnabled,
+    setIsDistanceReminderEnabled,
+    distanceInterval,
+    setDistanceInterval,
+    isTimeReminderEnabled,
+    setIsTimeReminderEnabled,
+    timeInterval,
+    setTimeInterval,
+  } = globalStore();
 
-  const enableReminders = () => {
-    setIsReminderEnabled(!isReminderEnabled);
-    setDistanceInterval(!distanceInterval);
-    setTimeInterval(!timeInterval);
-  };
+  const motorcycles = useQuery(Motorcycle);
 
-  const enableDistanceInterval = () => {
-    setDistanceInterval(!distanceInterval);
-  };
+  const toggleMaster = async () => {
+    if (!isReminderEnabled && motorcycles.length === 0) {
+      Alert.alert(
+        'Belum Ada Motor',
+        'Tambahkan motor di tab Garage terlebih dahulu untuk mengaktifkan pengingat.',
+      );
+      return;
+    }
 
-  const enableTimeInterval = () => {
-    setTimeInterval(!timeInterval);
+    const newVal = !isReminderEnabled;
+    setIsReminderEnabled(newVal);
+    if (newVal) {
+      await requestNotificationPermission();
+    } else {
+      await cancelAllReminders();
+    }
   };
+  const toggleDistance = () =>
+    setIsDistanceReminderEnabled(!isDistanceReminderEnabled);
+  const toggleTime = () => setIsTimeReminderEnabled(!isTimeReminderEnabled);
 
   return (
     <Container>
@@ -35,6 +68,7 @@ export default function RemindersScreen() {
           </Text>
         </View>
       </View>
+
       <ScrollView>
         <View style={tw.style('mb-6')}>
           <View
@@ -55,7 +89,7 @@ export default function RemindersScreen() {
             </View>
             <Switch
               value={isReminderEnabled}
-              onValueChange={enableReminders}
+              onValueChange={toggleMaster}
               trackColor={{
                 false: tw.color('primarySoft'),
                 true: tw.color('primary'),
@@ -79,8 +113,9 @@ export default function RemindersScreen() {
                 Distance Interval
               </Text>
               <Switch
-                value={distanceInterval}
-                onValueChange={enableDistanceInterval}
+                value={isDistanceReminderEnabled}
+                onValueChange={toggleDistance}
+                disabled={motorcycles.length === 0}
                 trackColor={{
                   false: tw.color('primarySoft'),
                   true: tw.color('primary'),
@@ -89,10 +124,25 @@ export default function RemindersScreen() {
               />
             </View>
             <View>
-              <Text style={tw.style('text-darkGrey font-montserrat text-md')}>
-                Remind me every 2,000 KM
+              <Text
+                style={tw.style(
+                  motorcycles.length === 0
+                    ? 'text-darkGrey/50 font-montserrat'
+                    : 'text-darkGrey font-montserrat',
+                )}>
+                Remind me every {distanceInterval.toLocaleString('id-ID')} KM
               </Text>
             </View>
+            <Slider
+              min={2000}
+              max={10000}
+              step={2000}
+              stepLabel="k"
+              initialValue={distanceInterval}
+              formatLabel={v => v / 1000}
+              disabled={motorcycles.length === 0}
+              onChange={value => setDistanceInterval(value)}
+            />
           </View>
 
           <View style={tw.style('mx-6 p-6 rounded-xl border border-white')}>
@@ -109,8 +159,9 @@ export default function RemindersScreen() {
                 Time Interval
               </Text>
               <Switch
-                value={timeInterval}
-                onValueChange={enableTimeInterval}
+                value={isTimeReminderEnabled}
+                onValueChange={toggleTime}
+                disabled={motorcycles.length === 0}
                 trackColor={{
                   false: tw.color('primarySoft'),
                   true: tw.color('primary'),
@@ -119,10 +170,25 @@ export default function RemindersScreen() {
               />
             </View>
             <View>
-              <Text style={tw.style('text-darkGrey font-montserrat text-md')}>
-                Remind me every 3 months
+              <Text
+                style={tw.style(
+                  motorcycles.length === 0
+                    ? 'text-darkGrey/50 font-montserrat'
+                    : 'text-darkGrey font-montserrat',
+                )}>
+                Remind me every {timeInterval} months
               </Text>
             </View>
+            <Slider
+              min={2}
+              max={12}
+              step={2}
+              stepLabel="Mo"
+              initialValue={timeInterval}
+              formatLabel={v => v}
+              disabled={motorcycles.length === 0}
+              onChange={value => setTimeInterval(value)}
+            />
           </View>
         </View>
         <View
@@ -141,6 +207,20 @@ export default function RemindersScreen() {
             estimations!
           </Text>
         </View>
+        {/* <TouchableOpacity
+          onPress={sendTestNotification}
+          style={tw.style('mx-6 mb-8 p-4 rounded-xl items-center', {
+             backgroundColor: tw.color('primary'),
+             shadowColor: '#ff6600',
+             shadowOffset: { width: 0, height: 4 },
+             shadowOpacity: 0.3,
+             shadowRadius: 6,
+             elevation: 8,
+          })}>
+          <Text style={tw.style('text-white font-montserratBold text-base')}>
+            Test Notification (5 sec delay)
+          </Text>
+        </TouchableOpacity> */}
       </ScrollView>
     </Container>
   );
