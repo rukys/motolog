@@ -13,24 +13,27 @@ export const useAgent = () => {
   const { selectedMotorcycleId, setSelectedMotorcycleId } = globalStore();
 
   const activeMotorcycle =
-    motorcycles.find(m => m._id.toHexString() === selectedMotorcycleId) ||
-    motorcycles[0];
+    motorcycles.find(
+      motorcycle => motorcycle._id.toHexString() === selectedMotorcycleId,
+    ) || motorcycles[0];
   const activeServices = services.filter(
-    s => s.motorcycleId?.toHexString() === activeMotorcycle?._id?.toHexString(),
+    serviceRecord =>
+      serviceRecord.motorcycleId?.toHexString() ===
+      activeMotorcycle?._id?.toHexString(),
   );
 
-  const sendMessage = async prompt => {
-    if (!prompt.trim()) {
+  const sendMessage = async userMessage => {
+    if (!userMessage.trim()) {
       return;
     }
 
     // Add user message to UI
-    const newUserMsg = {
+    const newUserMessage = {
       id: Date.now().toString(),
-      text: prompt,
+      text: userMessage,
       type: 'user',
     };
-    const updatedMessages = [...messages, newUserMsg];
+    const updatedMessages = [...messages, newUserMessage];
     setMessages(updatedMessages);
     setIsLoading(true);
 
@@ -50,14 +53,14 @@ export const useAgent = () => {
 
       // Handle Function Calls (Agentic Behavior)
       if (response.functionCalls && response.functionCalls.length > 0) {
-        for (const call of response.functionCalls) {
-          if (call.name === 'addReminder') {
+        for (const functionCall of response.functionCalls) {
+          if (functionCall.name === 'addReminder') {
             if (!activeMotorcycle) {
               aiTextResponse =
                 'Eits, kamu belum nambahin motor di garasi nih. Tambahin dulu gih biar saya bisa ngingetin!';
             } else {
               const { type, title, body, expectedValue, expectedDate } =
-                call.args;
+                functionCall.args;
 
               // Execute the tool locally!
               addReminder(
@@ -70,12 +73,12 @@ export const useAgent = () => {
               );
             }
             toolsCalled = true;
-          } else if (call.name === 'showMotorcycleStatus') {
+          } else if (functionCall.name === 'showMotorcycleStatus') {
             if (!activeMotorcycle) {
               aiTextResponse =
                 'Kamu belum punya motor di garasi nih kak. Masukin motor kamu dulu ya lewat halaman depan!';
             } else {
-              const { actionInfo } = call.args;
+              const { actionInfo } = functionCall.args;
               if (actionInfo) {
                 aiTextResponse = actionInfo;
               } else if (!aiTextResponse) {
@@ -84,7 +87,7 @@ export const useAgent = () => {
               uiComponent = 'MotorcycleStatus';
             }
             toolsCalled = true;
-          } else if (call.name === 'showPartsHealth') {
+          } else if (functionCall.name === 'showPartsHealth') {
             if (!activeMotorcycle) {
               aiTextResponse =
                 'Motor aja belum punya kak, apanya yang mau dicek sparepartnya? 😂 Tambahin motor dulu ya!';
@@ -92,7 +95,7 @@ export const useAgent = () => {
               aiTextResponse =
                 'Kamu belum pernah nyatet rekap servis atau ganti parts apapun nih kak, jadi MotoAI belum bisa prediksi umur kampas rem dll. Mulai rutin nyatet pengeluaran dulu ya!';
             } else {
-              const { actionInfo } = call.args;
+              const { actionInfo } = functionCall.args;
               if (actionInfo) {
                 aiTextResponse = actionInfo;
               } else if (!aiTextResponse) {
@@ -101,12 +104,12 @@ export const useAgent = () => {
               uiComponent = 'PartsHealth';
             }
             toolsCalled = true;
-          } else if (call.name === 'quickLogService') {
+          } else if (functionCall.name === 'quickLogService') {
             if (!activeMotorcycle) {
               aiTextResponse =
                 'Bentar, kamu nyervis apaan nih? Orang kamu belum daftar motornya di aplikasi... 😂 Bikin data motornya dulu ya di home!';
             } else {
-              const { serviceType, items, actionInfo } = call.args;
+              const { serviceType, items, actionInfo } = functionCall.args;
               if (actionInfo) {
                 aiTextResponse = actionInfo;
               } else if (!aiTextResponse) {
@@ -116,7 +119,7 @@ export const useAgent = () => {
               uiData = { serviceType, items };
             }
             toolsCalled = true;
-          } else if (call.name === 'showServiceHistory') {
+          } else if (functionCall.name === 'showServiceHistory') {
             if (!activeMotorcycle) {
               aiTextResponse =
                 'Gimana mau ngecek history kak, motornya aja belum kamu masukin! 😂';
@@ -124,17 +127,21 @@ export const useAgent = () => {
               aiTextResponse =
                 'Belum ada riwayat servis untuk motor ini kak. Kosong melompong!';
             } else {
-              const { actionInfo, searchQuery } = call.args;
+              const { actionInfo, searchQuery } = functionCall.args;
               let matchedServices = activeServices;
 
               if (searchQuery) {
-                const query = searchQuery.toLowerCase();
+                const searchTerm = searchQuery.toLowerCase();
                 matchedServices = activeServices.filter(
-                  s =>
-                    (s.serviceType &&
-                      s.serviceType.toLowerCase().includes(query)) ||
-                    (s.notes && s.notes.toLowerCase().includes(query)) ||
-                    (s.items && s.items.toLowerCase().includes(query)),
+                  serviceRecord =>
+                    (serviceRecord.serviceType &&
+                      serviceRecord.serviceType
+                        .toLowerCase()
+                        .includes(searchTerm)) ||
+                    (serviceRecord.notes &&
+                      serviceRecord.notes.toLowerCase().includes(searchTerm)) ||
+                    (serviceRecord.items &&
+                      serviceRecord.items.toLowerCase().includes(searchTerm)),
                 );
               }
 
@@ -153,12 +160,12 @@ export const useAgent = () => {
               }
             }
             toolsCalled = true;
-          } else if (call.name === 'showExpenseAnalytics') {
+          } else if (functionCall.name === 'showExpenseAnalytics') {
             if (!activeMotorcycle) {
               aiTextResponse =
                 'Gimana mau ngecek pengeluaran kak, motornya aja belum kamu masukin! 😂';
             } else {
-              const { actionInfo } = call.args;
+              const { actionInfo } = functionCall.args;
               if (actionInfo) {
                 aiTextResponse = actionInfo;
               } else if (!aiTextResponse) {
@@ -167,8 +174,8 @@ export const useAgent = () => {
               uiComponent = 'ExpenseAnalytics';
             }
             toolsCalled = true;
-          } else if (call.name === 'switchMotorcycle') {
-            const { motorcycleId, motorcycleName } = call.args;
+          } else if (functionCall.name === 'switchMotorcycle') {
+            const { motorcycleId, motorcycleName } = functionCall.args;
             if (motorcycleId) {
               setSelectedMotorcycleId(motorcycleId);
               aiTextResponse = `Sip, garasi kamu udah saya pindahin ke ${
@@ -176,18 +183,18 @@ export const useAgent = () => {
               }. Mau ngecek apa nih sekarang?`;
               toolsCalled = true;
             }
-          } else if (call.name === 'startDiagnostic') {
-            const { symptom, question, options } = call.args;
+          } else if (functionCall.name === 'startDiagnostic') {
+            const { symptom, question, options } = functionCall.args;
             uiComponent = 'Diagnostic';
             uiData = { symptom, question, options };
             aiTextResponse = ''; // Keep it silent so the Card does the talking
             toolsCalled = true;
-          } else if (call.name === 'updateOdometer') {
-            const { newOdometer } = call.args;
+          } else if (functionCall.name === 'updateOdometer') {
+            const { newOdometer } = functionCall.args;
             if (activeMotorcycle) {
               updateOdometer(activeMotorcycle._id, newOdometer);
               aiTextResponse = `Sip kak! Angka Odometer motor kamu udah saya update ke sistem jadi ${newOdometer.toLocaleString(
-                'id-ID'
+                'id-ID',
               )} KM. Cek rutin jadwal servis ya!`;
               uiComponent = 'MotorcycleStatus';
               toolsCalled = true;
@@ -203,7 +210,7 @@ export const useAgent = () => {
       }
 
       // Add AI response to UI
-      const newAiMsg = {
+      const newAiMessage = {
         id: (Date.now() + 1).toString(),
         text: aiTextResponse || 'Siap, laksanakan!',
         type: 'ai',
@@ -211,7 +218,7 @@ export const useAgent = () => {
         component: uiComponent,
         data: uiData,
       };
-      setMessages(prev => [...prev, newAiMsg]);
+      setMessages(prev => [...prev, newAiMessage]);
     } catch (error) {
       console.error(error);
       setMessages(prev => [

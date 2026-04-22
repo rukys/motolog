@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unstable-nested-components */
-import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import tw from '../../../tailwind';
 import { Bell, Bike, History, Home } from 'lucide-react-native';
+import React from 'react';
+import { TouchableOpacity } from 'react-native';
+import tw from '../../../tailwind';
 
 const TabItem = ({ title, active, size, onPress, onLongPress }) => {
   const Icon = () => {

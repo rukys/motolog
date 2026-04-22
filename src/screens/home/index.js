@@ -29,7 +29,7 @@ export default function HomeScreen({ navigation }) {
 
   // Get the active motorcycle (selected or first)
   const activeMotorcycle =
-    motorcycles.find(m => m._id.toHexString() === selectedMotorcycleId) ||
+    motorcycles.find(motorcycle => motorcycle._id.toHexString() === selectedMotorcycleId) ||
     motorcycles[0];
 
   const activeServices = React.useMemo(() => {
@@ -37,13 +37,13 @@ export default function HomeScreen({ navigation }) {
       return [];
     }
     return services.filter(
-      s => s.motorcycleId?.toHexString() === activeMotorcycle._id.toHexString(),
+      serviceRecord => serviceRecord.motorcycleId?.toHexString() === activeMotorcycle._id.toHexString(),
     );
   }, [services, activeMotorcycle]);
 
   const lastService = activeServices.length > 0 ? activeServices[0] : null;
   const totalExpense = activeServices.reduce(
-    (sum, s) => sum + (s.cost || 0),
+    (sum, serviceRecord) => sum + (serviceRecord.cost || 0),
     0,
   );
 
@@ -133,15 +133,15 @@ export default function HomeScreen({ navigation }) {
         <MotorcycleSelector
           motorcycles={motorcycles}
           activeMotorcycleId={activeMotorcycle?._id?.toHexString()}
-          onSelect={moto => {
-            setSelectedMotorcycleId(moto._id.toHexString());
+          onSelect={selectedMotorcycle => {
+            setSelectedMotorcycleId(selectedMotorcycle._id.toHexString());
             Alert.alert(
               'Motorcycle Selected',
-              `Active motorcycle is now: ${moto.name}`,
+              `Active motorcycle is now: ${selectedMotorcycle.name}`,
             );
           }}
-          onEditOdo={(idHex, newOdo) => {
-            updateOdometer(new Realm.BSON.ObjectId(idHex), newOdo);
+          onEditOdo={(motorcycleIdHex, newOdometer) => {
+            updateOdometer(new Realm.BSON.ObjectId(motorcycleIdHex), newOdometer);
           }}
         />
       </View>

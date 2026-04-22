@@ -7,7 +7,14 @@ export const useReminder = () => {
   // Sort reminders by expectedDate ascending, or fallback to createdAt
   const reminders = useQuery(Reminder).sorted('expectedDate', false);
 
-  const addReminder = (motorcycleId, type, title, body, expectedValue = null, expectedDate = null) => {
+  const addReminder = (
+    motorcycleId,
+    type,
+    title,
+    body,
+    expectedValue = null,
+    expectedDate = null,
+  ) => {
     realm.write(() => {
       realm.create('Reminder', {
         _id: new Realm.BSON.ObjectId(),
@@ -24,8 +31,11 @@ export const useReminder = () => {
     });
   };
 
-  const markAsTriggered = (reminderId) => {
-    const reminder = realm.objectForPrimaryKey('Reminder', new Realm.BSON.ObjectId(reminderId));
+  const markAsTriggered = reminderId => {
+    const reminder = realm.objectForPrimaryKey(
+      'Reminder',
+      new Realm.BSON.ObjectId(reminderId),
+    );
     if (reminder) {
       realm.write(() => {
         reminder.status = 'TRIGGERED';
@@ -34,8 +44,11 @@ export const useReminder = () => {
     }
   };
 
-  const markAsCompleted = (reminderId) => {
-    const reminder = realm.objectForPrimaryKey('Reminder', new Realm.BSON.ObjectId(reminderId));
+  const markAsCompleted = reminderId => {
+    const reminder = realm.objectForPrimaryKey(
+      'Reminder',
+      new Realm.BSON.ObjectId(reminderId),
+    );
     if (reminder) {
       realm.write(() => {
         reminder.status = 'COMPLETED';
@@ -44,8 +57,13 @@ export const useReminder = () => {
     }
   };
 
-  const deleteReminder = (reminderId) => {
-    const reminder = realm.objectForPrimaryKey('Reminder', reminderId instanceof Realm.BSON.ObjectId ? reminderId : new Realm.BSON.ObjectId(reminderId));
+  const deleteReminder = reminderId => {
+    const reminder = realm.objectForPrimaryKey(
+      'Reminder',
+      reminderId instanceof Realm.BSON.ObjectId
+        ? reminderId
+        : new Realm.BSON.ObjectId(reminderId),
+    );
     if (reminder) {
       realm.write(() => {
         realm.delete(reminder);
@@ -53,5 +71,11 @@ export const useReminder = () => {
     }
   };
 
-  return { reminders, addReminder, markAsTriggered, markAsCompleted, deleteReminder };
+  return {
+    reminders,
+    addReminder,
+    markAsTriggered,
+    markAsCompleted,
+    deleteReminder,
+  };
 };

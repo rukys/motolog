@@ -20,14 +20,14 @@ export class Motorcycle extends Realm.Object {
     name: 'Motorcycle',
     primaryKey: '_id',
     properties: {
-      _id: {type: 'objectId', default: () => new Realm.BSON.ObjectId()},
-      name: {type: 'string'},
-      model: {type: 'string'},
-      plateNumber: {type: 'string'},
-      currentOdoMeter: {type: 'int', default: 0},
-      image: {type: 'string', default: '', optional: true},
-      createdAt: {type: 'date', default: () => new Date()},
-      updatedAt: {type: 'date', default: () => new Date()},
+      _id: { type: 'objectId', default: () => new Realm.BSON.ObjectId() },
+      name: { type: 'string' },
+      model: { type: 'string' },
+      plateNumber: { type: 'string' },
+      currentOdoMeter: { type: 'int', default: 0 },
+      image: { type: 'string', default: '', optional: true },
+      createdAt: { type: 'date', default: () => new Date() },
+      updatedAt: { type: 'date', default: () => new Date() },
     },
   };
 }

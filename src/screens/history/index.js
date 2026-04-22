@@ -13,8 +13,8 @@ export default function HistoryScreen({ navigation }) {
   // Build a lookup map: motorcycleId (hex) → motorcycle name
   const motorcycleMap = useMemo(() => {
     const map = {};
-    motorcycles.forEach(m => {
-      map[m._id.toHexString()] = m.name;
+    motorcycles.forEach(motorcycle => {
+      map[motorcycle._id.toHexString()] = motorcycle.name;
     });
     return map;
   }, [motorcycles]);
@@ -26,17 +26,17 @@ export default function HistoryScreen({ navigation }) {
     if (!searchQuery.trim()) {
       return services;
     }
-    const query = searchQuery.toLowerCase();
-    return services.filter(s => {
-      const type = (s.serviceType || '').toLowerCase();
-      const workshop = (s.workshop || '').toLowerCase();
+    const searchTerm = searchQuery.toLowerCase();
+    return services.filter(serviceRecord => {
+      const type = (serviceRecord.serviceType || '').toLowerCase();
+      const workshop = (serviceRecord.workshop || '').toLowerCase();
       const motoName = (
-        motorcycleMap[s.motorcycleId?.toHexString()] || ''
+        motorcycleMap[serviceRecord.motorcycleId?.toHexString()] || ''
       ).toLowerCase();
       return (
-        type.includes(query) ||
-        workshop.includes(query) ||
-        motoName.includes(query)
+        type.includes(searchTerm) ||
+        workshop.includes(searchTerm) ||
+        motoName.includes(searchTerm)
       );
     });
   }, [services, searchQuery, motorcycleMap]);

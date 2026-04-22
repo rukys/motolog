@@ -31,7 +31,7 @@ export default function MotorcycleDetailScreen({ navigation, route }) {
 
   // Find the motorcycle from the reactive collection
   const motorcycle = useMemo(() => {
-    return motorcycles.find(m => m._id.toHexString() === motorcycleId);
+    return motorcycles.find(motorcycleItem => motorcycleItem._id.toHexString() === motorcycleId);
   }, [motorcycles, motorcycleId]);
 
   // Get services for this motorcycle
@@ -53,11 +53,11 @@ export default function MotorcycleDetailScreen({ navigation, route }) {
     if (!searchQuery.trim()) {
       return services;
     }
-    const query = searchQuery.toLowerCase();
-    return services.filter(s => {
-      const type = (s.serviceType || '').toLowerCase();
-      const workshop = (s.workshop || '').toLowerCase();
-      return type.includes(query) || workshop.includes(query);
+    const searchTerm = searchQuery.toLowerCase();
+    return services.filter(serviceRecord => {
+      const type = (serviceRecord.serviceType || '').toLowerCase();
+      const workshop = (serviceRecord.workshop || '').toLowerCase();
+      return type.includes(searchTerm) || workshop.includes(searchTerm);
     });
   }, [services, searchQuery]);
 

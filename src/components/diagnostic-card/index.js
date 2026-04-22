@@ -56,15 +56,15 @@ export default function DiagnosticCard({
         </Text>
 
         <View style={tw.style('flex-row flex-wrap gap-2')}>
-          {options.map((opt, index) => {
-            const isSelected = selected === opt;
-            const isOtherSelected = selected && selected !== opt;
+          {options.map((option, index) => {
+            const isSelected = selected === option;
+            const isOtherSelected = selected && selected !== option;
 
             return (
               <TouchableOpacity
                 key={index}
                 disabled={!!selected}
-                onPress={() => handleSelect(opt)}
+                onPress={() => handleSelect(option)}
                 style={tw.style(
                   'px-3 py-2 rounded-lg border flex-row items-center',
                   isSelected
@@ -78,7 +78,7 @@ export default function DiagnosticCard({
                     'font-montserratSemiBold text-xs',
                     isSelected ? 'text-white' : 'text-white/80',
                   )}>
-                  {opt}
+                  {option}
                 </Text>
               </TouchableOpacity>
             );

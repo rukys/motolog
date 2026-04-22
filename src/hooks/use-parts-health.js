@@ -21,39 +21,41 @@ export const usePartsHealth = (services = [], currentOdoMeter = 0) => {
     return PARTS_CONFIG.map(part => {
       let lastChangedOdo = 0;
 
-      for (let i = 0; i < services.length; i++) {
-        const service = services[i];
-        const typeMatch = part.keywords.some(kw =>
-          (service.serviceType || '').toLowerCase().includes(kw),
+      for (let index = 0; index < services.length; index++) {
+        const service = services[index];
+        const typeMatch = part.keywords.some(keyword =>
+          (service.serviceType || '').toLowerCase().includes(keyword),
         );
 
-        let hasPart = false;
+        let hasMatchingPartInItems = false;
         if (!typeMatch) {
-          let items = [];
+          let parsedItems = [];
           try {
-            items = JSON.parse(service.items || '[]');
-            if (!Array.isArray(items)) {
+            parsedItems = JSON.parse(service.items || '[]');
+            if (!Array.isArray(parsedItems)) {
               // Handle case where double stringify caused it to parse as string
-              if (typeof items === 'string') {
-                items = JSON.parse(items);
+              if (typeof parsedItems === 'string') {
+                parsedItems = JSON.parse(parsedItems);
               }
-              if (!Array.isArray(items)) {
-                items = [];
+              if (!Array.isArray(parsedItems)) {
+                parsedItems = [];
               }
             }
           } catch {}
 
-          hasPart = items.some(item => {
-            const text = (
-              (item.type || '') +
+          hasMatchingPartInItems = parsedItems.some(serviceItem => {
+            const combinedText = (
+              (serviceItem.type || '') +
               ' ' +
-              (item.description || '')
+              (serviceItem.description || '')
             ).toLowerCase();
-            return part.keywords.some(kw => text.includes(kw));
+            return part.keywords.some(keyword =>
+              combinedText.includes(keyword),
+            );
           });
         }
 
-        if (hasPart || typeMatch) {
+        if (hasMatchingPartInItems || typeMatch) {
           lastChangedOdo = service.odometerAtService || 0;
           break;
         }

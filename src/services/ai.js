@@ -230,93 +230,93 @@ export const buildGarageContext = (
     return 'User has no motorcycle selected.';
   }
 
-  let context = `Active Motorcycle Name: ${activeMotorcycle.name}\n`;
-  context += `Plate: ${activeMotorcycle.plateNumber}\n`;
-  context += `Current Odometer: ${activeMotorcycle.currentOdoMeter} KM\n\n`;
-  context += 'Recent Service History:\n';
+  let garageContextText = `Active Motorcycle Name: ${activeMotorcycle.name}\n`;
+  garageContextText += `Plate: ${activeMotorcycle.plateNumber}\n`;
+  garageContextText += `Current Odometer: ${activeMotorcycle.currentOdoMeter} KM\n\n`;
+  garageContextText += 'Recent Service History:\n';
 
   if (activeServices && activeServices.length > 0) {
-    const recent = activeServices.slice(0, 5); // top 5
-    recent.forEach(s => {
-      context += `- Date: ${new Date(
-        s.serviceDate,
-      ).toLocaleDateString()}, Odo: ${s.odometerAtService} KM, Type: ${
-        s.serviceType
-      }, Notes: ${s.notes || '-'}\n`;
+    const recentServices = activeServices.slice(0, 5); // top 5
+    recentServices.forEach(serviceRecord => {
+      garageContextText += `- Date: ${new Date(
+        serviceRecord.serviceDate,
+      ).toLocaleDateString()}, Odo: ${serviceRecord.odometerAtService} KM, Type: ${
+        serviceRecord.serviceType
+      }, Notes: ${serviceRecord.notes || '-'}\n`;
       try {
-        let items = JSON.parse(s.items);
-        if (!Array.isArray(items)) {
-          if (typeof items === 'string') {
-            items = JSON.parse(items);
+        let parsedItems = JSON.parse(serviceRecord.items);
+        if (!Array.isArray(parsedItems)) {
+          if (typeof parsedItems === 'string') {
+            parsedItems = JSON.parse(parsedItems);
           }
-          if (!Array.isArray(items)) {
-            items = [];
+          if (!Array.isArray(parsedItems)) {
+            parsedItems = [];
           }
         }
-        if (items.length > 0) {
-          context += `  Parts Changed: ${items
-            .map(i => i.type || i.description)
+        if (parsedItems.length > 0) {
+          garageContextText += `  Parts Changed: ${parsedItems
+            .map(serviceItem => serviceItem.type || serviceItem.description)
             .join(', ')}\n`;
         }
       } catch {}
     });
   } else {
-    context += '- No records yet.\n';
+    garageContextText += '- No records yet.\n';
   }
 
   if (allMotorcycles.length > 1) {
-    context +=
+    garageContextText +=
       '\nOther Motorcycles Owned By User (Can switch to these using switchMotorcycle tool):\n';
-    allMotorcycles.forEach(m => {
-      if (m._id.toHexString() !== activeMotorcycle._id.toHexString()) {
-        context += `- Name: ${m.name}, Plate: ${
-          m.plateNumber
-        }, ID: ${m._id.toHexString()}\n`;
+    allMotorcycles.forEach(motorcycle => {
+      if (motorcycle._id.toHexString() !== activeMotorcycle._id.toHexString()) {
+        garageContextText += `- Name: ${motorcycle.name}, Plate: ${
+          motorcycle.plateNumber
+        }, ID: ${motorcycle._id.toHexString()}\n`;
       }
     });
   }
 
   // --- LOCAL AUTO-WARNING LOGIC (Provokasi AI) ---
   const currentOdo = activeMotorcycle.currentOdoMeter || 0;
-  const oliServices = activeServices
+  const oilChangeServices = activeServices
     ? activeServices.filter(
-        s => s.serviceType && s.serviceType.toLowerCase().includes('oli'),
+        serviceRecord => serviceRecord.serviceType && serviceRecord.serviceType.toLowerCase().includes('oli'),
       )
     : [];
 
-  if (oliServices.length === 0) {
-    context +=
+  if (oilChangeServices.length === 0) {
+    garageContextText +=
       '\n[URGENT LOCAL WARNING: User belum pernah mencatat ganti oli sama sekali di aplikasi ini! Pada respon pertamamu, ingatkan dia dengan sangat sopan menggunakan panggilan Kak/Kamu bahwa catatan servis olinya masih kosong, dan tawarkan dengan proaktif untuk membuat reminder atau mencatat servis terakhirnya sekarang demi menjaga kesehatan mesin!]';
   } else {
     // Sort to get the most recent oil change
-    const lastOliService = oliServices.sort(
+    const lastOilChangeService = oilChangeServices.sort(
       (a, b) => new Date(b.serviceDate) - new Date(a.serviceDate),
     )[0];
-    const lastOdo = lastOliService.odometerAtService || 0;
-    const distanceSinceOli = currentOdo - lastOdo;
+    const lastOilChangeOdo = lastOilChangeService.odometerAtService || 0;
+    const distanceSinceOilChange = currentOdo - lastOilChangeOdo;
 
-    if (distanceSinceOli >= 2000) {
-      context += `\n[URGENT LOCAL WARNING: Motor user sudah jalan ${distanceSinceOli} KM sejak ganti oli terakhir (Lebih dari batas 2000 KM)! Pada respon pertamamu, tegur dan omeli dia dengan gaya bahasa gaul karena motornya bisa rusak kalau telat ganti oli, dan tawarkan untuk bikin reminder atau buka form catat servis!]`;
+    if (distanceSinceOilChange >= 2000) {
+      garageContextText += `\n[URGENT LOCAL WARNING: Motor user sudah jalan ${distanceSinceOilChange} KM sejak ganti oli terakhir (Lebih dari batas 2000 KM)! Pada respon pertamamu, tegur dan omeli dia dengan gaya bahasa gaul karena motornya bisa rusak kalau telat ganti oli, dan tawarkan untuk bikin reminder atau buka form catat servis!]`;
     }
   }
   // ----------------------------------------------
 
-  return context;
+  return garageContextText;
 };
 
 // 4. The Core AI Invocation
-export const askAgenticMotoAI = async (messagesArray, garageContext) => {
+export const askAgenticMotoAI = async (chatMessages, garageContext) => {
   if (!Config.GEMINI_API_KEY) {
     throw new Error('GEMINI_API_KEY is not configured in .env');
   }
 
   // Format history for Gemini SDK
-  const formattedContents = messagesArray.map(msg => ({
-    role: msg.type === 'user' ? 'user' : 'model',
-    parts: [{ text: msg.text || '...' }],
+  const formattedChatHistory = chatMessages.map(message => ({
+    role: message.type === 'user' ? 'user' : 'model',
+    parts: [{ text: message.text || '...' }],
   }));
 
-  const systemContent = `
+  const systemPrompt = `
 You are MotoAI, a proactive, smart virtual garage companion for a motorcycle rider.
 You respond in a friendly, polite, and conversational style using Indonesian terms (Saya, Kamu, Kak).
 Your job is to read the user's prompt and evaluate if they need a reminder set up for their motorcycle.
@@ -339,12 +339,12 @@ If the user complains about a mechanical issue or symptom (e.g., "Motor saya bre
 If you don't call the tool, then just reply conversationally with brief advice.
   `;
 
-  const executeCall = async modelName => {
+  const callGeminiModel = async modelName => {
     return await ai.models.generateContent({
       model: modelName,
-      contents: formattedContents,
+      contents: formattedChatHistory,
       config: {
-        systemInstruction: systemContent,
+        systemInstruction: systemPrompt,
         temperature: 0.7,
         tools: [
           {
@@ -377,26 +377,26 @@ If you don't call the tool, then just reply conversationally with brief advice.
     'gemini-3.1-flash-lite-preview',
   ];
 
-  for (let i = 0; i < models.length; i++) {
+  for (let modelIndex = 0; modelIndex < models.length; modelIndex++) {
     try {
-      return await executeCall(models[i]);
+      return await callGeminiModel(models[modelIndex]);
     } catch (error) {
       // Check if it's a rate limit or quota error (429)
-      const isRateLimit =
+      const isQuotaExceeded =
         error.status === 429 ||
         (error.message && error.message.includes('429')) ||
         (error.message && error.message.toLowerCase().includes('quota'));
 
-      if (isRateLimit && i < models.length - 1) {
+      if (isQuotaExceeded && modelIndex < models.length - 1) {
         console.warn(
           `MotoAI: Kena Limit di model ${
-            models[i]
-          }! Pindah otomatis ke model cadangan (${models[i + 1]})...`,
+            models[modelIndex]
+          }! Pindah otomatis ke model cadangan (${models[modelIndex + 1]})...`,
         );
         continue;
       }
 
-      console.error(`MotoAI Error on ${models[i]}:`, error);
+      console.error(`MotoAI Error on ${models[modelIndex]}:`, error);
       throw error;
     }
   }

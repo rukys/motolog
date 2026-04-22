@@ -26,7 +26,7 @@ const MotorcycleSelector = ({
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [tempOdo, setTempOdo] = useState('');
   const currentIndex = motorcycles.findIndex(
-    m => m._id.toHexString() === activeMotorcycleId,
+    motorcycle => motorcycle._id.toHexString() === activeMotorcycleId,
   );
   const safeIndex = currentIndex >= 0 ? currentIndex : 0;
 
@@ -58,13 +58,13 @@ const MotorcycleSelector = ({
   };
 
   const handleSaveOdo = () => {
-    const odoNum = parseInt(tempOdo, 10);
-    if (isNaN(odoNum) || odoNum < 0) {
+    const odometerValue = parseInt(tempOdo, 10);
+    if (isNaN(odometerValue) || odometerValue < 0) {
       Alert.alert('Invalid', 'Odometer must be a valid number.');
       return;
     }
     if (onEditOdo) {
-      onEditOdo(current._id.toHexString(), odoNum);
+      onEditOdo(current._id.toHexString(), odometerValue);
     }
     setIsModalVisible(false);
   };

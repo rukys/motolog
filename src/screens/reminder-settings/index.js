@@ -44,9 +44,9 @@ export default function ReminderSettingsScreen({ navigation }) {
       return;
     }
 
-    const newVal = !isReminderEnabled;
-    setIsReminderEnabled(newVal);
-    if (newVal) {
+    const newReminderState = !isReminderEnabled;
+    setIsReminderEnabled(newReminderState);
+    if (newReminderState) {
       await requestNotificationPermission();
     } else {
       await cancelAllReminders();
@@ -144,7 +144,7 @@ export default function ReminderSettingsScreen({ navigation }) {
               step={2000}
               stepLabel="k"
               initialValue={distanceInterval}
-              formatLabel={v => v / 1000}
+              formatLabel={sliderValue => sliderValue / 1000}
               disabled={motorcycles.length === 0}
               onChange={value => setDistanceInterval(value)}
             />
@@ -190,7 +190,7 @@ export default function ReminderSettingsScreen({ navigation }) {
               step={2}
               stepLabel="Mo"
               initialValue={timeInterval}
-              formatLabel={v => v}
+              formatLabel={sliderValue => sliderValue}
               disabled={motorcycles.length === 0}
               onChange={value => setTimeInterval(value)}
             />

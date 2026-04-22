@@ -9,41 +9,54 @@ import Animated, {
 } from 'react-native-reanimated';
 import { PanGestureHandler } from 'react-native-gesture-handler';
 
-const CustomDiscreteSlider = ({ min, max, step, stepLabel = '', initialValue, formatLabel, disabled = false, onChange }) => {
+const CustomDiscreteSlider = ({
+  min,
+  max,
+  step,
+  stepLabel = '',
+  initialValue,
+  formatLabel,
+  disabled = false,
+  onChange,
+}) => {
   const sliderWidth = useSharedValue(0);
   const translateX = useSharedValue(0);
 
   const steps = useMemo(() => {
-    const arr = [];
-    for (let i = min; i <= max; i += step) {
-      arr.push(i);
+    const stepValues = [];
+    for (let stepValue = min; stepValue <= max; stepValue += step) {
+      stepValues.push(stepValue);
     }
-    return arr;
+    return stepValues;
   }, [min, max, step]);
 
   const totalSteps = steps.length - 1;
 
-  const onLayout = e => {
-    const width = e.nativeEvent.layout.width;
+  const onLayout = layoutEvent => {
+    const width = layoutEvent.nativeEvent.layout.width;
     sliderWidth.value = width;
 
     // Set initial position
     if (initialValue !== undefined) {
       let initialStepIndex = steps.indexOf(initialValue);
-      if (initialStepIndex === -1) initialStepIndex = 0;
+      if (initialStepIndex === -1) {
+        initialStepIndex = 0;
+      }
       const stepWidth = width / totalSteps;
       translateX.value = initialStepIndex * stepWidth;
     }
   };
 
   const onGestureEvent = event => {
-    if (disabled) return;
-    let newX = event.nativeEvent.translationX + translateX.value;
+    if (disabled) {
+      return;
+    }
+    let newPosition = event.nativeEvent.translationX + translateX.value;
 
-    newX = Math.max(0, Math.min(newX, sliderWidth.value));
+    newPosition = Math.max(0, Math.min(newPosition, sliderWidth.value));
 
     const stepWidth = sliderWidth.value / totalSteps;
-    const snapped = Math.round(newX / stepWidth) * stepWidth;
+    const snapped = Math.round(newPosition / stepWidth) * stepWidth;
 
     translateX.value = withSpring(snapped);
 

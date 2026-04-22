@@ -24,7 +24,7 @@ export default function ServiceDetailScreen({navigation, route}) {
 
   // Find the service
   const service = useMemo(() => {
-    return services.find(s => s._id.toHexString() === serviceId);
+    return services.find(serviceRecord => serviceRecord._id.toHexString() === serviceId);
   }, [services, serviceId]);
 
   // Find the associated motorcycle
@@ -33,22 +33,22 @@ export default function ServiceDetailScreen({navigation, route}) {
       return null;
     }
     return motorcycles.find(
-      m => m._id.toHexString() === service.motorcycleId?.toHexString(),
+      motorcycleItem => motorcycleItem._id.toHexString() === service.motorcycleId?.toHexString(),
     );
   }, [service, motorcycles]);
 
   const items = useMemo(() => {
     try {
-      let parsed = JSON.parse(service?.items || '[]');
-      if (!Array.isArray(parsed)) {
-        if (typeof parsed === 'string') {
-          parsed = JSON.parse(parsed);
+      let parsedItems = JSON.parse(service?.items || '[]');
+      if (!Array.isArray(parsedItems)) {
+        if (typeof parsedItems === 'string') {
+          parsedItems = JSON.parse(parsedItems);
         }
-        if (!Array.isArray(parsed)) {
-          parsed = [];
+        if (!Array.isArray(parsedItems)) {
+          parsedItems = [];
         }
       }
-      return parsed;
+      return parsedItems;
     } catch {
       return [];
     }

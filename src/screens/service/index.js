@@ -151,15 +151,15 @@ export default function ServiceScreen({ navigation, route }) {
     setReceiptPhotos(prev => prev.filter((_, i) => i !== index));
   };
 
-  const onSubmit = async data => {
+  const onSubmit = async formData => {
     if (!motorcycleId) {
       Alert.alert('Error', 'No motorcycle selected');
       return;
     }
 
     // Validate at least one service item has a type
-    const validItems = (data.items || []).filter(
-      item => item.type && item.type.trim(),
+    const validItems = (formData.items || []).filter(
+      serviceItem => serviceItem.type && serviceItem.type.trim(),
     );
     if (validItems.length === 0) {
       Alert.alert('Error', 'Please add at least one service item');
@@ -173,18 +173,18 @@ export default function ServiceScreen({ navigation, route }) {
       const savedPhotoPaths = await saveImages(receiptPhotos, 'receipt');
 
       // Build service type from items
-      const serviceType = validItems.map(item => item.type).join(', ');
+      const serviceType = validItems.map(serviceItem => serviceItem.type).join(', ');
 
       const result = createService({
         motorcycleId: new Realm.BSON.ObjectId(motorcycleId),
         serviceType,
-        serviceDate: data.serviceDate,
-        odometerAtService: data.odometerAtService
-          ? Number(data.odometerAtService)
+        serviceDate: formData.serviceDate,
+        odometerAtService: formData.odometerAtService
+          ? Number(formData.odometerAtService)
           : 0,
         cost: total,
-        workshop: data.workshop,
-        notes: data.notes,
+        workshop: formData.workshop,
+        notes: formData.notes,
         items: validItems,
         receiptPhotos: savedPhotoPaths,
       });
@@ -305,11 +305,11 @@ export default function ServiceScreen({ navigation, route }) {
               control={control}
               name="odometerAtService"
               rules={{
-                validate: val => {
-                  if (val && isNaN(Number(val))) {
+                validate: inputValue => {
+                  if (inputValue && isNaN(Number(inputValue))) {
                     return 'Must be a valid number';
                   }
-                  if (val && Number(val) < 0) {
+                  if (inputValue && Number(inputValue) < 0) {
                     return 'Cannot be negative';
                   }
                   return true;

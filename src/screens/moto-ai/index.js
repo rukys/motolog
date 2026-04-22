@@ -40,23 +40,23 @@ const QuickLogCard = ({
   onSave,
 }) => {
   const [costs, setCosts] = useState(
-    items.reduce((acc, item, idx) => {
-      acc[idx] = item.estimatedCost ? item.estimatedCost.toString() : '';
+    items.reduce((acc, item, index) => {
+      acc[index] = item.estimatedCost ? item.estimatedCost.toString() : '';
       return acc;
     }, {}),
   );
   const [isSaved, setIsSaved] = useState(false);
 
-  const handleCostChange = (idx, value) => {
-    setCosts(prev => ({ ...prev, [idx]: value }));
+  const handleCostChange = (index, value) => {
+    setCosts(prev => ({ ...prev, [index]: value }));
   };
 
   const handleSave = () => {
     // Map the items to match ServiceScreen format
-    const formattedItems = items.map((item, idx) => ({
+    const formattedItems = items.map((item, index) => ({
       type: item.category,
       description: 'Quick Log by AI',
-      price: costs[idx] ? parseInt(costs[idx], 10) : 0,
+      price: costs[index] ? parseInt(costs[index], 10) : 0,
     }));
 
     const totalCost = formattedItems.reduce((sum, item) => sum + item.price, 0);
@@ -76,8 +76,8 @@ const QuickLogCard = ({
         </Text>
       </View>
       <View style={tw.style('p-4 py-3')}>
-        {items.map((item, idx) => (
-          <View key={idx} style={tw.style('mb-3')}>
+        {items.map((item, index) => (
+          <View key={index} style={tw.style('mb-3')}>
             <Text
               style={tw.style(
                 'text-white font-montserratSemiBold text-xs mb-1',
@@ -91,8 +91,8 @@ const QuickLogCard = ({
               Estimasi Biaya (Rp)
             </Text>
             <TextInput
-              value={costs[idx]}
-              onChangeText={val => handleCostChange(idx, val)}
+              value={costs[index]}
+              onChangeText={costValue => handleCostChange(index, costValue)}
               keyboardType="number-pad"
               editable={!isSaved}
               placeholder="0"
@@ -163,18 +163,18 @@ export default function MotoAIScreen({ navigation }) {
   };
 
   const handleSaveOdo = () => {
-    const odoNum = parseInt(tempOdo, 10);
-    if (isNaN(odoNum) || odoNum < 0) {
+    const odometerValue = parseInt(tempOdo, 10);
+    if (isNaN(odometerValue) || odometerValue < 0) {
       Alert.alert('Invalid', 'Odometer must be a valid number.');
       return;
     }
-    updateOdometer(activeMotorcycle._id, odoNum);
+    updateOdometer(activeMotorcycle._id, odometerValue);
     setIsModalVisible(false);
 
     // Inject visual feedback into chat
     if (addSystemMessage) {
       addSystemMessage(
-        `Sip kak! Angka Odometer motor kamu udah saya update ke sistem jadi ${odoNum.toLocaleString(
+        `Sip kak! Angka Odometer motor kamu udah saya update ke sistem jadi ${odometerValue.toLocaleString(
           'id-ID',
         )} KM. Cek rutin jadwal servis ya!`,
       );
@@ -241,10 +241,10 @@ export default function MotoAIScreen({ navigation }) {
               </Text>
 
               <View style={tw.style('flex-row flex-wrap justify-center px-2')}>
-                {SUGGESTIONS.map((sug, i) => (
+                {SUGGESTIONS.map((suggestion, index) => (
                   <TouchableOpacity
-                    key={i}
-                    onPress={() => sendMessage(sug)}
+                    key={index}
+                    onPress={() => sendMessage(suggestion)}
                     style={tw.style(
                       'bg-secondary/70 border border-primary/20 rounded-xl px-4 py-3 m-1.5 w-[45%]',
                     )}>
@@ -252,23 +252,23 @@ export default function MotoAIScreen({ navigation }) {
                       style={tw.style(
                         'text-white/80 font-montserrat text-xs text-center',
                       )}>
-                      "{sug}"
+                      "{suggestion}"
                     </Text>
                   </TouchableOpacity>
                 ))}
               </View>
             </View>
           ) : (
-            messages.map((msg, index) => (
+            messages.map((message, index) => (
               <View
-                key={msg.id || index}
+                key={message.id || index}
                 style={tw.style(
                   'mb-4 max-w-[85%] rounded-2xl p-4',
-                  msg.type === 'user'
+                  message.type === 'user'
                     ? 'bg-primary/20 self-end rounded-tr-sm border border-primary/30'
                     : 'bg-secondary self-start rounded-tl-sm',
                 )}>
-                {msg.toolsCalled && (
+                {message.toolsCalled && (
                   <View
                     style={tw.style(
                       'flex-row items-center bg-primary/20 self-start px-2 py-1 flex-wrap rounded-full mb-2',
@@ -287,17 +287,17 @@ export default function MotoAIScreen({ navigation }) {
                   </View>
                 )}
 
-                {msg.text ? (
+                {message.text ? (
                   <Text
                     style={tw.style(
                       'text-white font-montserrat text-sm leading-5',
                     )}>
-                    {msg.text}
+                    {message.text}
                   </Text>
                 ) : null}
 
                 {/* Generative UI Component Rendering */}
-                {msg.component === 'MotorcycleStatus' && activeMotorcycle && (
+                {message.component === 'MotorcycleStatus' && activeMotorcycle && (
                   <View
                     style={tw.style(
                       'mt-4 bg-dark border border-primary/30 rounded-xl overflow-hidden w-64',
@@ -395,12 +395,12 @@ export default function MotoAIScreen({ navigation }) {
                 )}
 
                 {/* Parts Health UI Component Rendering */}
-                {msg.component === 'PartsHealth' && activeMotorcycle && (
+                {message.component === 'PartsHealth' && activeMotorcycle && (
                   <View style={tw.style('mt-4 w-72')}>
                     <PartsHealthCard
                       services={services.filter(
-                        s =>
-                          s.motorcycleId?.toHexString() ===
+                        serviceRecord =>
+                          serviceRecord.motorcycleId?.toHexString() ===
                           activeMotorcycle._id.toHexString(),
                       )}
                       currentOdoMeter={activeMotorcycle.currentOdoMeter}
@@ -412,22 +412,22 @@ export default function MotoAIScreen({ navigation }) {
                 )}
 
                 {/* Quick Log UI Component Rendering */}
-                {msg.component === 'QuickLogService' &&
-                  msg.data &&
+                {message.component === 'QuickLogService' &&
+                  message.data &&
                   activeMotorcycle && (
                     <QuickLogCard
                       activeMotorcycle={activeMotorcycle}
-                      serviceType={msg.data.serviceType}
-                      items={msg.data.items}
-                      onSave={(motoId, type, totalPrice, itemsArray) => {
+                      serviceType={message.data.serviceType}
+                      items={message.data.items}
+                      onSave={(motorcycleId, type, totalPrice, serviceItems) => {
                         createService({
-                          motorcycleId: motoId,
+                          motorcycleId: motorcycleId,
                           serviceType: type,
                           serviceDate: new Date(),
                           odometerAtService:
                             parseInt(activeMotorcycle.currentOdoMeter, 10) || 0,
                           cost: totalPrice,
-                          items: itemsArray,
+                          items: serviceItems,
                         });
                         if (addSystemMessage) {
                           addSystemMessage(
@@ -441,31 +441,30 @@ export default function MotoAIScreen({ navigation }) {
                   )}
 
                 {/* Service History UI Component Rendering */}
-                {msg.component === 'ServiceHistory' && activeMotorcycle && (
+                {message.component === 'ServiceHistory' && activeMotorcycle && (
                   <View style={tw.style('mt-4 w-72')}>
                     {services
                       .filter(
-                        s =>
-                          s.motorcycleId?.toHexString() ===
+                        serviceRecord =>
+                          serviceRecord.motorcycleId?.toHexString() ===
                             activeMotorcycle._id.toHexString() &&
-                          (!msg.data?.searchQuery ||
-                            (s.serviceType &&
-                              s.serviceType
+                          (!message.data?.searchQuery ||
+                            (serviceRecord.serviceType &&
+                              serviceRecord.serviceType
                                 .toLowerCase()
                                 .includes(
-                                  msg.data.searchQuery.toLowerCase(),
+                                  message.data.searchQuery.toLowerCase(),
                                 )) ||
-                            (s.notes &&
-                              s.notes
+                            (serviceRecord.notes &&
+                              serviceRecord.notes
                                 .toLowerCase()
                                 .includes(
-                                  msg.data.searchQuery.toLowerCase(),
+                                  message.data.searchQuery.toLowerCase(),
                                 )) ||
-                            (s.items &&
-                              s.items
+                            (serviceRecord.items &&
+                              serviceRecord.items
                                 .toLowerCase()
-                                .includes(msg.data.searchQuery.toLowerCase()))),
-                      )
+                                .includes(message.data.searchQuery.toLowerCase()))),                      )
                       .slice(0, 1)
                       .map(service => (
                         <ServiceCard
@@ -483,12 +482,12 @@ export default function MotoAIScreen({ navigation }) {
                 )}
 
                 {/* Expense Analytics UI Component Rendering */}
-                {msg.component === 'ExpenseAnalytics' && activeMotorcycle && (
+                {message.component === 'ExpenseAnalytics' && activeMotorcycle && (
                   <View style={tw.style('mt-1 w-72')}>
                     <ExpenseAnalyticsCard
                       services={services.filter(
-                        s =>
-                          s.motorcycleId?.toHexString() ===
+                        serviceRecord =>
+                          serviceRecord.motorcycleId?.toHexString() ===
                           activeMotorcycle._id.toHexString(),
                       )}
                     />
@@ -496,12 +495,12 @@ export default function MotoAIScreen({ navigation }) {
                 )}
 
                 {/* Diagnostic Flow UI Component Rendering */}
-                {msg.component === 'Diagnostic' && msg.data && (
+                {message.component === 'Diagnostic' && message.data && (
                   <View style={tw.style('mt-1 w-72')}>
                     <DiagnosticCard
-                      symptom={msg.data.symptom}
-                      question={msg.data.question}
-                      options={msg.data.options}
+                      symptom={message.data.symptom}
+                      question={message.data.question}
+                      options={message.data.options}
                       onSelectOption={option =>
                         sendMessage(`[Diagnosa]: ${option}`)
                       }

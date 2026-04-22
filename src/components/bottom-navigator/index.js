@@ -10,39 +10,39 @@ const BottomNavigator = ({ state, descriptors, navigation }) => {
         style={tw.style(
           'flex-row justify-between px-14 py-4 mb-1 shadow-2xl bg-secondary',
         )}>
-        {state.routes.map((route, index) => {
-          const { options } = descriptors[route.key];
+        {state.routes.map((tabRoute, tabIndex) => {
+          const { options } = descriptors[tabRoute.key];
           const label =
             options.tabBarLabel !== undefined
               ? options.tabBarLabel
               : options.title !== undefined
               ? options.title
-              : route.name;
+              : tabRoute.name;
 
-          const isFocused = state.index === index;
+          const isFocused = state.index === tabIndex;
 
           const onPress = () => {
             const event = navigation.emit({
               type: 'tabPress',
-              target: route.key,
+              target: tabRoute.key,
               canPreventDefault: true,
             });
 
             if (!isFocused && !event.defaultPrevented) {
-              navigation.navigate(route.name);
+              navigation.navigate(tabRoute.name);
             }
           };
 
           const onLongPress = () => {
             navigation.emit({
               type: 'tabLongPress',
-              target: route.key,
+              target: tabRoute.key,
             });
           };
 
           return (
             <TabItem
-              key={index}
+              key={tabIndex}
               size={26}
               title={label}
               active={isFocused}

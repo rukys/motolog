@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 import tw from '../../../tailwind';
 import BaseCard from '../base-card';
 
-const ServiceInfoCard = ({icon, title, children}) => {
+const ServiceInfoCard = ({ icon, title, children }) => {
   return (
     <BaseCard style={tw.style('p-5 mb-4')}>
       {/* Header */}

@@ -17,8 +17,8 @@ export default function ExpenseAnalyticsCard({ services = [] }) {
     let totalCost = 0;
     const categoryMap = {};
 
-    services.forEach(s => {
-      const cost = s.cost || 0;
+    services.forEach(serviceRecord => {
+      const cost = serviceRecord.cost || 0;
       if (cost <= 0) {
         return;
       }
@@ -26,7 +26,9 @@ export default function ExpenseAnalyticsCard({ services = [] }) {
       totalCost += cost;
 
       // Simplistic categorization based on keywords
-      const typeStr = s.serviceType ? s.serviceType.toLowerCase() : 'lainnya';
+      const typeStr = serviceRecord.serviceType
+        ? serviceRecord.serviceType.toLowerCase()
+        : 'lainnya';
       let category = 'Lainnya';
 
       if (
@@ -47,7 +49,7 @@ export default function ExpenseAnalyticsCard({ services = [] }) {
       ) {
         category = 'Ganti Part';
       } else {
-        category = s.serviceType || 'Lainnya'; // Use raw string if short, else fallback
+        category = serviceRecord.serviceType || 'Lainnya'; // Use raw string if short, else fallback
       }
 
       if (category.length > 15) {
@@ -62,10 +64,11 @@ export default function ExpenseAnalyticsCard({ services = [] }) {
 
     // Convert map to sorted array
     const breakdownArray = Object.keys(categoryMap)
-      .map((key, index) => ({
-        label: key,
-        amount: categoryMap[key],
-        percentage: totalCost > 0 ? (categoryMap[key] / totalCost) * 100 : 0,
+      .map((categoryName, index) => ({
+        label: categoryName,
+        amount: categoryMap[categoryName],
+        percentage:
+          totalCost > 0 ? (categoryMap[categoryName] / totalCost) * 100 : 0,
         colorClass: COLOR_PALETTE[index % COLOR_PALETTE.length],
       }))
       .sort((a, b) => b.amount - a.amount);
@@ -119,11 +122,11 @@ export default function ExpenseAnalyticsCard({ services = [] }) {
           style={tw.style(
             'h-3 w-full rounded-full flex-row overflow-hidden mb-4',
           )}>
-          {breakdown.map((item, i) => (
+          {breakdown.map((categoryItem, index) => (
             <View
-              key={i}
-              style={tw.style(`h-full ${item.colorClass}`, {
-                width: `${item.percentage}%`,
+              key={index}
+              style={tw.style(`h-full ${categoryItem.colorClass}`, {
+                width: `${categoryItem.percentage}%`,
               })}
             />
           ))}
@@ -131,20 +134,20 @@ export default function ExpenseAnalyticsCard({ services = [] }) {
 
         {/* Legend */}
         <View style={tw.style('flex-col gap-2')}>
-          {breakdown.map((item, i) => (
+          {breakdown.map((categoryItem, index) => (
             <View
-              key={i}
+              key={index}
               style={tw.style('flex-row items-center justify-between')}>
               <View style={tw.style('flex-row items-center')}>
                 <View
                   style={tw.style(
-                    `w-2.5 h-2.5 rounded-full mr-2 ${item.colorClass}`,
+                    `w-2.5 h-2.5 rounded-full mr-2 ${categoryItem.colorClass}`,
                   )}
                 />
                 <Text
                   style={tw.style('text-white/80 font-montserrat text-xs')}
                   numberOfLines={1}>
-                  {item.label}
+                  {categoryItem.label}
                 </Text>
               </View>
               <View style={tw.style('flex-row items-center')}>
@@ -152,13 +155,13 @@ export default function ExpenseAnalyticsCard({ services = [] }) {
                   style={tw.style(
                     'text-white font-montserratSemiBold text-xs mr-2',
                   )}>
-                  Rp {item.amount.toLocaleString('id-ID')}
+                  Rp {categoryItem.amount.toLocaleString('id-ID')}
                 </Text>
                 <Text
                   style={tw.style(
                     'text-white/40 font-montserrat text-[10px] w-8 text-right',
                   )}>
-                  {Math.round(item.percentage)}%
+                  {Math.round(categoryItem.percentage)}%
                 </Text>
               </View>
             </View>

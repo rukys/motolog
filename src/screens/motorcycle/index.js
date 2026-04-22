@@ -101,7 +101,7 @@ export default function MotorcycleScreen({navigation}) {
     setPhoto(null);
   };
 
-  const onSubmit = async data => {
+  const onSubmit = async formData => {
     setIsSubmitting(true);
 
     try {
@@ -112,10 +112,10 @@ export default function MotorcycleScreen({navigation}) {
       }
 
       const result = createMotorcycle({
-        name: data.name,
-        model: data.model,
-        plateNumber: data.plateNumber,
-        currentOdoMeter: Number(data.currentOdoMeter),
+        name: formData.name,
+        model: formData.model,
+        plateNumber: formData.plateNumber,
+        currentOdoMeter: Number(formData.currentOdoMeter),
         image: imagePath,
       });
 
@@ -250,12 +250,12 @@ export default function MotorcycleScreen({navigation}) {
               name="currentOdoMeter"
               rules={{
                 required: 'Odometer is required',
-                validate: val => {
-                  const num = Number(val);
-                  if (isNaN(num)) {
+                validate: inputValue => {
+                  const numericValue = Number(inputValue);
+                  if (isNaN(numericValue)) {
                     return 'Must be a valid number';
                   }
-                  if (num < 0) {
+                  if (numericValue < 0) {
                     return 'Cannot be negative';
                   }
                   return true;

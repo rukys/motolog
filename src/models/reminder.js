@@ -1,5 +1,4 @@
 import Realm from 'realm';
-import { Motorcycle } from './motorcycle';
 
 export class Reminder extends Realm.Object {
   static schema = {

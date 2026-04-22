@@ -28,11 +28,11 @@ export default function ReminderListScreen({ navigation }) {
   const { selectedMotorcycleId } = globalStore();
 
   const activeMotorcycle =
-    motorcycles.find(m => m._id.toHexString() === selectedMotorcycleId) ||
+    motorcycles.find(motorcycle => motorcycle._id.toHexString() === selectedMotorcycleId) ||
     motorcycles[0];
 
   const activeServices = services.filter(
-    s => s.motorcycleId?.toHexString() === activeMotorcycle?._id?.toHexString(),
+    serviceRecord => serviceRecord.motorcycleId?.toHexString() === activeMotorcycle?._id?.toHexString(),
   );
 
   const partsHealth = usePartsHealth(
@@ -42,13 +42,13 @@ export default function ReminderListScreen({ navigation }) {
 
   // Combine Realm reminders and computed PartsHealth predictions
   const activeReminders = reminders.filter(
-    r =>
-      r.status !== 'COMPLETED' &&
-      r.motorcycleId?.toHexString() === activeMotorcycle?._id?.toHexString(),
+    reminder =>
+      reminder.status !== 'COMPLETED' &&
+      reminder.motorcycleId?.toHexString() === activeMotorcycle?._id?.toHexString(),
   );
 
-  const pendingReminders = activeReminders.filter(r => r.status === 'PENDING');
-  const triggeredReminders = activeReminders.filter(r => r.status === 'TRIGGERED');
+  const pendingReminders = activeReminders.filter(reminder => reminder.status === 'PENDING');
+  const triggeredReminders = activeReminders.filter(reminder => reminder.status === 'TRIGGERED');
 
   const handleDelete = (reminder) => {
     Alert.alert(
@@ -240,7 +240,7 @@ export default function ReminderListScreen({ navigation }) {
                 )}>
                 Needs Attention
               </Text>
-              {triggeredReminders.map(r => renderReminderCard(r, true))}
+              {triggeredReminders.map(reminder => renderReminderCard(reminder, true))}
             </View>
           )}
 
@@ -252,7 +252,7 @@ export default function ReminderListScreen({ navigation }) {
                 )}>
                 Upcoming
               </Text>
-              {pendingReminders.map(r => renderReminderCard(r, false))}
+              {pendingReminders.map(reminder => renderReminderCard(reminder, false))}
             </View>
           )}
 
