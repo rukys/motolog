@@ -68,4 +68,26 @@ document.addEventListener('DOMContentLoaded', () => {
       navbar.style.padding = '0';
     }
   });
+
+  // Screenshot Slider Navigation
+  const slider = document.getElementById('screenshotSlider');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  if (slider && prevBtn && nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      const scrollAmount = slider.clientWidth * 0.8;
+      slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      const scrollAmount = slider.clientWidth * 0.8;
+      slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+  }
+
+  // Ensure Lucide icons are initialized
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
 });

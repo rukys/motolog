@@ -1,6 +1,6 @@
 :root {
-    --primary: #FBBF24;
-    --primary-soft: #D97706;
+    --primary: #ff6600;
+    --primary-soft: #33231d;
     --bg-dark: #0A0A0A;
     --bg-secondary: #171717;
     --text-white: #FFFFFF;
@@ -61,21 +61,25 @@ span {
 .logo {
     display: flex;
     align-items: center;
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: -1px;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
 }
 
 .logo-icon {
     background: var(--primary);
-    color: var(--bg-dark);
-    width: 36px;
-    height: 36px;
+    color: #000;
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
-    margin-right: 10px;
+    border-radius: 12px;
+    margin-right: 12px;
+}
+
+.logo-text {
+    color: var(--primary);
 }
 
 .nav-links {
@@ -91,6 +95,9 @@ span {
     font-weight: 600;
     font-size: 14px;
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .nav-links a:hover {
@@ -100,11 +107,13 @@ span {
 .btn-github {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     background: var(--glass);
-    padding: 8px 16px;
+    padding: 10px 24px;
     border-radius: 50px;
     border: 1px solid var(--glass-border);
+    transition: 0.3s;
 }
 
 /* Hero Section */
@@ -212,7 +221,7 @@ span {
 .phone-mockup {
     position: relative;
     width: 320px;
-    height: 650px;
+    height: 680px;
     background: #1f1f1f;
     border-radius: 40px;
     border: 8px solid #333;
@@ -224,7 +233,8 @@ span {
 .phone-mockup img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: var(--bg-dark);
 }
 
 /* Features */
@@ -362,77 +372,204 @@ span {
 }
 
 .screenshot-item {
-    flex: 0 0 280px;
+    flex: 0 0 300px;
     border-radius: 20px;
     overflow: hidden;
     border: 4px solid #333;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: #000;
 }
 
 .screenshot-item img {
     width: 100%;
+    height: auto;
     display: block;
 }
 
 /* Tech Stack */
 .tech-stack {
-    padding: 80px 0;
+    padding: 100px 0;
     text-align: center;
     border-top: 1px solid var(--glass-border);
-}
-
-.tech-stack h3 {
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--text-grey);
-    margin-bottom: 40px;
+    background-color: var(--bg-secondary); /* Match features section */
 }
 
 .tech-logos {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 20px;
+    margin-top: 40px;
 }
 
-.tech-item {
-    font-size: 24px;
-    font-weight: 800;
-    color: rgba(255, 255, 255, 0.2);
+.tech-card {
+    background: var(--bg-dark);
+    padding: 24px 32px;
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.tech-item:hover {
+.tech-card i {
+    width: 24px;
+    height: 24px;
     color: var(--primary);
+}
+
+.tech-card span {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.tech-card:hover {
+    border-color: var(--primary);
+    background: rgba(255, 102, 0, 0.05);
+}
+
+/* Screenshots Slider */
+.screenshots-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.scroll-btn {
+    background: var(--primary);
+    color: var(--bg-dark);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    z-index: 10;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-btn:hover {
+    transform: scale(1.1);
+    background: var(--text-white);
+}
+
+.screenshots-slider {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding: 40px 0;
+    scrollbar-width: none; /* Hide scrollbar but keep functionality */
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    flex: 1;
+}
+
+.screenshots-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.screenshot-item {
+    flex: 0 0 320px;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 6px solid #262626;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    scroll-snap-align: center;
+    background: #000;
+}
+
+.screenshot-item img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* Footer */
 .footer {
     padding: 100px 0 40px;
-    background: radial-gradient(circle at 50% 100%, rgba(251, 191, 36, 0.1) 0%, transparent 60%);
+    background: radial-gradient(circle at 50% 100%, rgba(255, 102, 0, 0.05) 0%, transparent 60%);
+    border-top: 1px solid var(--glass-border);
 }
 
-.footer-content {
-    text-align: center;
-    margin-bottom: 100px;
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 60px;
+    margin-bottom: 80px;
 }
 
-.footer-content h2 {
-    font-size: 48px;
-    font-weight: 800;
-    margin-bottom: 16px;
-}
-
-.footer-content p {
-    font-size: 20px;
+.brand-desc {
     color: var(--text-grey);
-    margin-bottom: 40px;
+    margin: 20px 0;
+    max-width: 300px;
 }
 
-.footer-btns {
+.social-links {
     display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
     justify-content: center;
+    border-radius: 50%;
+    color: var(--text-white);
+    transition: 0.3s;
+}
+
+.social-icon:hover {
+    background: var(--primary);
+    color: var(--bg-dark);
+    transform: translateY(-3px);
+}
+
+.footer-links h4, .footer-cta h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--text-white);
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--text-grey);
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+}
+
+.footer-cta p {
+    color: var(--text-grey);
+    margin-bottom: 25px;
+}
+
+.btn-sm {
+    padding: 12px 24px;
+    font-size: 14px;
 }
 
 .footer-bottom {
@@ -461,6 +598,8 @@ span {
     
     .hero-btns, .hero-stats {
         justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
     }
     
     .hero-image {

@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
+import { Bike } from 'lucide-react-native';
 import React, { useEffect } from 'react';
-import { ActivityIndicator, StatusBar, Text, View } from 'react-native';
-import { Bike, Home, User } from 'lucide-react-native';
+import { ActivityIndicator, View } from 'react-native';
 import tw from '../../../tailwind';
 import { Container } from '../../components';
 
