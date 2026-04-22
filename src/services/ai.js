@@ -286,7 +286,7 @@ export const buildGarageContext = (
 
   if (oliServices.length === 0) {
     context +=
-      '\n[URGENT LOCAL WARNING: User belum pernah mencatat ganti oli sama sekali di aplikasi ini! Pada respon pertamamu, omeli dia dengan gaya bahasa gaul (ngab/bro) karena lalai mencatat atau ganti oli, dan tawarkan untuk membuat reminder atau mencatatnya sekarang!]';
+      '\n[URGENT LOCAL WARNING: User belum pernah mencatat ganti oli sama sekali di aplikasi ini! Pada respon pertamamu, ingatkan dia dengan sangat sopan menggunakan panggilan Kak/Kamu bahwa catatan servis olinya masih kosong, dan tawarkan dengan proaktif untuk membuat reminder atau mencatat servis terakhirnya sekarang demi menjaga kesehatan mesin!]';
   } else {
     // Sort to get the most recent oil change
     const lastOliService = oliServices.sort(
@@ -373,7 +373,7 @@ If you don't call the tool, then just reply conversationally with brief advice.
   const models = [
     'gemini-2.5-flash',
     'gemini-2.5-flash-lite',
-    'gemini-3.1-flash-preview',
+    'gemini-3-flash-preview',
     'gemini-3.1-flash-lite-preview',
   ];
 

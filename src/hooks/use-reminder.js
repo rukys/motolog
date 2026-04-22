@@ -44,5 +44,14 @@ export const useReminder = () => {
     }
   };
 
-  return { reminders, addReminder, markAsTriggered, markAsCompleted };
+  const deleteReminder = (reminderId) => {
+    const reminder = realm.objectForPrimaryKey('Reminder', reminderId instanceof Realm.BSON.ObjectId ? reminderId : new Realm.BSON.ObjectId(reminderId));
+    if (reminder) {
+      realm.write(() => {
+        realm.delete(reminder);
+      });
+    }
+  };
+
+  return { reminders, addReminder, markAsTriggered, markAsCompleted, deleteReminder };
 };

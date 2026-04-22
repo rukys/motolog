@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import tw from '../../../tailwind';
 import { Container, EmptyState } from '../../components';
 import {
@@ -9,6 +9,9 @@ import {
   Bell,
   CheckCircle2,
   Sparkles,
+  Trash2,
+  Brain,
+  User,
 } from 'lucide-react-native';
 import {
   useReminder,
@@ -19,7 +22,7 @@ import {
 import { globalStore } from '../../stores';
 
 export default function ReminderListScreen({ navigation }) {
-  const { reminders, markAsCompleted } = useReminder();
+  const { reminders, markAsCompleted, deleteReminder } = useReminder();
   const { motorcycles } = useMotorcycle();
   const { services } = useService();
   const { selectedMotorcycleId } = globalStore();
@@ -46,6 +49,21 @@ export default function ReminderListScreen({ navigation }) {
 
   const pendingReminders = activeReminders.filter(r => r.status === 'PENDING');
   const triggeredReminders = activeReminders.filter(r => r.status === 'TRIGGERED');
+
+  const handleDelete = (reminder) => {
+    Alert.alert(
+      'Hapus Pengingat',
+      `Apakah kamu yakin ingin menghapus pengingat "${reminder.title}"?`,
+      [
+        { text: 'Batal', style: 'cancel' },
+        {
+          text: 'Hapus',
+          style: 'destructive',
+          onPress: () => deleteReminder(reminder._id),
+        },
+      ],
+    );
+  };
 
   // Inject Parts Health Predicitons
   partsHealth.forEach(part => {
@@ -77,6 +95,8 @@ export default function ReminderListScreen({ navigation }) {
   });
 
   const renderReminderCard = (reminder, isTriggered = false) => {
+    const isAI = reminder.type === 'AI_SUGGESTION' || reminder.isVirtual;
+
     return (
       <View
         key={reminder._id.toHexString()}
@@ -97,14 +117,32 @@ export default function ReminderListScreen({ navigation }) {
             )}
           </View>
           <View style={tw.style('flex-1 mr-2')}>
+            <View style={tw.style('flex-row items-center mb-1')}>
+              <Text
+                style={tw.style('text-white font-montserratBold text-base flex-1')}>
+                {reminder.title}
+              </Text>
+              <View
+                style={tw.style(
+                  'flex-row items-center px-2 py-0.5 rounded-md bg-dark/40',
+                )}>
+                {isAI ? (
+                  <Brain size={10} color={tw.color('primary')} />
+                ) : (
+                  <User size={10} color={tw.color('grey')} />
+                )}
+                <Text
+                  style={tw.style(
+                    'text-[9px] font-montserratBold ml-1 uppercase',
+                    isAI ? 'text-primary' : 'text-grey',
+                  )}>
+                  {isAI ? 'AI' : 'Manual'}
+                </Text>
+              </View>
+            </View>
+
             <Text
-              style={tw.style('text-white font-montserratBold text-base mb-1')}>
-              {reminder.title}
-            </Text>
-            <Text
-              style={tw.style(
-                'text-white/70 font-montserrat text-sm leading-5',
-              )}>
+              style={tw.style('text-white/70 font-montserrat text-sm leading-5')}>
               {reminder.body}
             </Text>
 
@@ -125,13 +163,22 @@ export default function ReminderListScreen({ navigation }) {
             ) : null}
           </View>
 
-          {isTriggered && !reminder.isVirtual && (
-            <TouchableOpacity
-              onPress={() => markAsCompleted(reminder._id.toHexString())}
-              style={tw.style('p-2')}>
-              <CheckCircle2 size={24} color={tw.color('primary')} />
-            </TouchableOpacity>
-          )}
+          <View style={tw.style('flex-row items-center')}>
+            {isTriggered && !reminder.isVirtual && (
+              <TouchableOpacity
+                onPress={() => markAsCompleted(reminder._id.toHexString())}
+                style={tw.style('p-2')}>
+                <CheckCircle2 size={22} color={tw.color('primary')} />
+              </TouchableOpacity>
+            )}
+            {!reminder.isVirtual && (
+              <TouchableOpacity
+                onPress={() => handleDelete(reminder)}
+                style={tw.style('p-2')}>
+                <Trash2 size={18} color={tw.color('error')} />
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
       </View>
     );

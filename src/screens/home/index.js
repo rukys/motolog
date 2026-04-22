@@ -164,9 +164,7 @@ export default function HomeScreen({ navigation }) {
             <AlertTriangle size={24} color={tw.color('error')} />
             <View style={tw.style('ml-3 flex-1')}>
               <Text
-                style={tw.style(
-                  'text-error font-montserrat-bold text-sm mb-1',
-                )}>
+                style={tw.style('text-error font-montserratBold text-sm mb-1')}>
                 Time for Service!
               </Text>
               <Text style={tw.style('text-white/80 font-montserrat text-xs')}>
@@ -190,7 +188,7 @@ export default function HomeScreen({ navigation }) {
               <>
                 <Text
                   style={tw.style(
-                    'text-white font-montserrat-bold text-lg mb-1',
+                    'text-white font-montserratBold text-lg mb-1',
                   )}>
                   {formatDate(lastService.serviceDate)}
                 </Text>
@@ -201,7 +199,10 @@ export default function HomeScreen({ navigation }) {
                     : ''}
                 </Text>
                 {lastService.workshop ? (
-                  <Text style={tw.style('text-primary font-montserrat text-xs mt-1.5')}>
+                  <Text
+                    style={tw.style(
+                      'text-primary font-montserrat text-xs mt-1.5',
+                    )}>
                     📍 {lastService.workshop}
                   </Text>
                 ) : null}
@@ -234,7 +235,7 @@ export default function HomeScreen({ navigation }) {
               <>
                 <Text
                   style={tw.style(
-                    `font-montserrat-bold text-lg mb-1 ${
+                    `font-montserratBold text-lg mb-1 ${
                       isServiceDue ? 'text-error' : 'text-white'
                     }`,
                   )}>
@@ -252,7 +253,7 @@ export default function HomeScreen({ navigation }) {
                 {isServiceDue && (
                   <Text
                     style={tw.style(
-                      'text-error font-montserrat-bold text-xs mt-2',
+                      'text-error font-montserratBold text-xs mt-2',
                     )}>
                     Service is due!
                   </Text>
@@ -282,7 +283,7 @@ export default function HomeScreen({ navigation }) {
               <>
                 <Text
                   style={tw.style(
-                    'text-white font-montserrat-bold text-lg mb-1',
+                    'text-white font-montserratBold text-lg mb-1',
                   )}>
                   {formatCurrency(totalExpense)}
                 </Text>
@@ -295,7 +296,7 @@ export default function HomeScreen({ navigation }) {
                   )}>
                   <Text
                     style={tw.style(
-                      'text-primary font-montserrat-bold text-xs',
+                      'text-primary font-montserratBold text-xs',
                     )}>
                     Avg. {formatCurrency(Math.floor(averageMonthlyExpense))} /
                     month
@@ -330,7 +331,9 @@ export default function HomeScreen({ navigation }) {
             'flex-row items-center justify-center bg-primary/10 border border-primary/30 p-4 rounded-xl mt-4 mx-1',
           )}>
           <Plus size={20} color={tw.color('primary')} />
-          <Text style={tw.style('text-primary font-montserrat-bold ml-2')}>Log New Service</Text>
+          <Text style={tw.style('text-primary font-montserratBold ml-2')}>
+            Log New Service
+          </Text>
         </TouchableOpacity>
 
         {/* Recent Service Logs */}
@@ -338,7 +341,7 @@ export default function HomeScreen({ navigation }) {
           <View style={tw.style('mt-6')}>
             <Text
               style={tw.style(
-                'text-white font-montserrat-bold text-lg mb-3 mx-1',
+                'text-white font-montserratBold text-lg mb-3 mx-1',
               )}>
               Recent Activity
             </Text>
