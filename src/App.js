@@ -8,6 +8,7 @@ import Navigations from './navigations';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Motorcycle } from './models/motorcycle';
 import { Service } from './models/service';
+import { Reminder } from './models/reminder';
 import { setupNotificationChannel, scheduleWeeklyOdoReminder } from './utils/notifications';
 import { globalStore } from './stores';
 
@@ -29,8 +30,8 @@ const App = () => {
   return (
     <>
       <RealmProvider
-        schema={[Motorcycle, Service]}
-        schemaVersion={4}
+        schema={[Motorcycle, Service, Reminder]}
+        schemaVersion={5}
         deleteRealmIfMigrationNeeded={false}
         // Jalankan migration kalau ada schema change
         onMigration={(oldRealm, newRealm) => {

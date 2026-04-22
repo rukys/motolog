@@ -6,10 +6,10 @@ import {
   Alert,
   Image,
 } from 'react-native';
-import React, {useState} from 'react';
-import {Container, Input} from '../../components';
+import React, { useState } from 'react';
+import { Container, Input } from '../../components';
 import tw from '../../../tailwind';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   ChevronLeft,
   ChevronDown,
@@ -19,37 +19,20 @@ import {
   Camera,
   X,
 } from 'lucide-react-native';
-import {useForm, Controller, useFieldArray} from 'react-hook-form';
-import {useService} from '../../hooks/use-service';
+import { useForm, Controller, useFieldArray } from 'react-hook-form';
+import { useService } from '../../hooks/use-service';
 import DatePicker from 'react-native-date-picker';
 import Realm from 'realm';
-import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
-import {saveImages} from '../../utils/image-storage';
+import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
+import { saveImages } from '../../utils/image-storage';
 import {
   requestCameraPermission,
   requestPhotoLibraryPermission,
 } from '../../utils/permissions';
+import { SERVICE_ITEM_TYPES } from '../../constants/service';
 
-const SERVICE_ITEM_TYPES = [
-  'Engine Oil',
-  'Oil Filter',
-  'Air Filter',
-  'Brake Pads',
-  'Brake Fluid',
-  'Chain & Sprocket',
-  'Tires',
-  'Battery',
-  'Spark Plug',
-  'Coolant',
-  'Transmission Oil',
-  'V-Belt',
-  'Roller',
-  'Clutch',
-  'Other',
-];
-
-export default function ServiceScreen({navigation, route}) {
-  const {createService} = useService();
+export default function ServiceScreen({ navigation, route }) {
+  const { createService } = useService();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [activeItemPicker, setActiveItemPicker] = useState(null);
@@ -65,18 +48,18 @@ export default function ServiceScreen({navigation, route}) {
     handleSubmit,
     setValue,
     watch,
-    formState: {errors},
+    formState: { errors },
   } = useForm({
     defaultValues: {
       serviceDate: new Date(),
       workshop: '',
       odometerAtService: '',
       notes: '',
-      items: [{type: '', description: '', price: ''}],
+      items: [{ type: '', description: '', price: '' }],
     },
   });
 
-  const {fields, append, remove} = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: 'items',
   });
@@ -251,8 +234,7 @@ export default function ServiceScreen({navigation, route}) {
                 style={tw.style(
                   'border border-darkGrey rounded-xl p-4 mt-2 opacity-60',
                 )}>
-                <Text
-                  style={tw.style('text-white font-montserrat text-base')}>
+                <Text style={tw.style('text-white font-montserrat text-base')}>
                   {motorcycleName}
                   {motorcyclePlate ? ` — ${motorcyclePlate}` : ''}
                 </Text>
@@ -263,8 +245,8 @@ export default function ServiceScreen({navigation, route}) {
             <Controller
               control={control}
               name="serviceDate"
-              rules={{required: 'Service date is required'}}
-              render={({field: {value}}) => (
+              rules={{ required: 'Service date is required' }}
+              render={({ field: { value } }) => (
                 <View style={tw.style('mb-4')}>
                   <Text
                     style={tw.style(
@@ -283,9 +265,7 @@ export default function ServiceScreen({navigation, route}) {
                       style={tw.style('mr-3')}
                     />
                     <Text
-                      style={tw.style(
-                        'text-white font-montserrat text-base',
-                      )}>
+                      style={tw.style('text-white font-montserrat text-base')}>
                       {formatDate(value)}
                     </Text>
                   </TouchableOpacity>
@@ -310,7 +290,7 @@ export default function ServiceScreen({navigation, route}) {
             <Controller
               control={control}
               name="workshop"
-              render={({field: {onChange, value}}) => (
+              render={({ field: { onChange, value } }) => (
                 <Input
                   label="Workshop Name"
                   placeholder="Where did you service?"
@@ -335,7 +315,7 @@ export default function ServiceScreen({navigation, route}) {
                   return true;
                 },
               }}
-              render={({field: {onChange, value}}) => (
+              render={({ field: { onChange, value } }) => (
                 <View style={tw.style('mb-4')}>
                   <Text
                     style={tw.style(
@@ -377,13 +357,14 @@ export default function ServiceScreen({navigation, route}) {
 
           {/* ─── Service Items ────────────────────────────────────── */}
           <View style={tw.style('mx-6 mb-4')}>
-            <View style={tw.style('flex-row items-center justify-between mb-3')}>
+            <View
+              style={tw.style('flex-row items-center justify-between mb-3')}>
               <Text
                 style={tw.style('text-white font-montserratBold text-base')}>
                 Service Items
               </Text>
               <TouchableOpacity
-                onPress={() => append({type: '', description: '', price: ''})}
+                onPress={() => append({ type: '', description: '', price: '' })}
                 style={tw.style('flex-row items-center')}>
                 <Plus size={16} color={tw.color('white')} />
                 <Text
@@ -407,15 +388,13 @@ export default function ServiceScreen({navigation, route}) {
                     'flex-row items-center justify-between px-4 pt-3 pb-1',
                   )}>
                   <Text
-                    style={tw.style(
-                      'text-darkGrey font-montserrat text-xs',
-                    )}>
+                    style={tw.style('text-darkGrey font-montserrat text-xs')}>
                     Item {index + 1}
                   </Text>
                   {fields.length > 1 && (
                     <TouchableOpacity
                       onPress={() => remove(index)}
-                      hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}>
+                      hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
                       <X size={14} color={tw.color('darkGrey')} />
                     </TouchableOpacity>
                   )}
@@ -425,8 +404,8 @@ export default function ServiceScreen({navigation, route}) {
                 <Controller
                   control={control}
                   name={`items.${index}.type`}
-                  rules={{required: 'Select a service type'}}
-                  render={({field: {value}}) => (
+                  rules={{ required: 'Select a service type' }}
+                  render={({ field: { value } }) => (
                     <View>
                       <TouchableOpacity
                         onPress={() =>
@@ -445,10 +424,7 @@ export default function ServiceScreen({navigation, route}) {
                           )}>
                           {value || 'Select item type'}
                         </Text>
-                        <ChevronDown
-                          size={16}
-                          color={tw.color('darkGrey')}
-                        />
+                        <ChevronDown size={16} color={tw.color('darkGrey')} />
                       </TouchableOpacity>
                       {activeItemPicker === index && (
                         <View style={tw.style('border-b border-darkGrey')}>
@@ -486,7 +462,7 @@ export default function ServiceScreen({navigation, route}) {
                 <Controller
                   control={control}
                   name={`items.${index}.description`}
-                  render={({field: {onChange, value}}) => (
+                  render={({ field: { onChange, value } }) => (
                     <Input
                       placeholder="Description (optional)"
                       value={value}
@@ -501,7 +477,7 @@ export default function ServiceScreen({navigation, route}) {
                 <Controller
                   control={control}
                   name={`items.${index}.price`}
-                  render={({field: {onChange, value}}) => (
+                  render={({ field: { onChange, value } }) => (
                     <View style={tw.style('flex-row items-center px-4 py-3')}>
                       <Text
                         style={tw.style(
@@ -529,8 +505,7 @@ export default function ServiceScreen({navigation, route}) {
             style={tw.style(
               'mx-6 flex-row items-center justify-between mb-6 py-2',
             )}>
-            <Text
-              style={tw.style('text-white font-montserratBold text-base')}>
+            <Text style={tw.style('text-white font-montserratBold text-base')}>
               Total
             </Text>
             <Text
@@ -544,7 +519,7 @@ export default function ServiceScreen({navigation, route}) {
             <Controller
               control={control}
               name="notes"
-              render={({field: {onChange, value}}) => (
+              render={({ field: { onChange, value } }) => (
                 <Input
                   label="Notes (optional)"
                   placeholder="Any additional notes..."
@@ -562,16 +537,14 @@ export default function ServiceScreen({navigation, route}) {
           {/* ─── Receipt Photos ───────────────────────────────────── */}
           <View style={tw.style('mx-6 mb-8')}>
             <Text
-              style={tw.style(
-                'text-white font-montserratBold text-base mb-3',
-              )}>
+              style={tw.style('text-white font-montserratBold text-base mb-3')}>
               Receipt Photos
             </Text>
             <View style={tw.style('flex-row flex-wrap')}>
               {receiptPhotos.map((photo, index) => (
                 <View key={index} style={tw.style('mr-3 mb-3 relative')}>
                   <Image
-                    source={{uri: photo.uri}}
+                    source={{ uri: photo.uri }}
                     style={tw.style('w-20 h-20 rounded-xl')}
                   />
                   <TouchableOpacity
@@ -603,17 +576,13 @@ export default function ServiceScreen({navigation, route}) {
         </ScrollView>
 
         {/* Bottom Buttons — Cancel + Save Service */}
-        <View
-          style={tw.style(
-            'flex-row items-center mx-6 mb-6 mt-2',
-          )}>
+        <View style={tw.style('flex-row items-center mx-6 mb-6 mt-2')}>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
             style={tw.style(
               'flex-1 p-4 rounded-xl items-center border border-darkGrey mr-3',
             )}>
-            <Text
-              style={tw.style('text-white font-montserratBold text-base')}>
+            <Text style={tw.style('text-white font-montserratBold text-base')}>
               Cancel
             </Text>
           </TouchableOpacity>
@@ -624,10 +593,9 @@ export default function ServiceScreen({navigation, route}) {
             style={tw.style(
               'flex-2 p-4 rounded-xl items-center',
               isSubmitting ? 'bg-gray-500' : 'bg-primary',
-              {flex: 2},
+              { flex: 2 },
             )}>
-            <Text
-              style={tw.style('text-white font-montserratBold text-base')}>
+            <Text style={tw.style('text-white font-montserratBold text-base')}>
               {isSubmitting ? 'Saving...' : 'Save Service'}
             </Text>
           </TouchableOpacity>

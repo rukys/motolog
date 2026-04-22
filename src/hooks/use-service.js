@@ -1,8 +1,8 @@
 // src/hooks/use-service.js
-import {useQuery, useRealm} from '@realm/react';
-import {useCallback} from 'react';
+import { useQuery, useRealm } from '@realm/react';
+import { useCallback } from 'react';
 import Realm from 'realm';
-import {Service} from '../models/service';
+import { Service } from '../models/service';
 
 // ─── Validation Helpers ──────────────────────────────────────────────
 
@@ -43,7 +43,7 @@ function validateServiceData(data) {
     errors.push('Cost must be a non-negative number');
   }
 
-  return {valid: errors.length === 0, errors};
+  return { valid: errors.length === 0, errors };
 }
 
 // ─── Hook ────────────────────────────────────────────────────────────
@@ -103,7 +103,7 @@ export function useService() {
     (data = {}) => {
       const validation = validateServiceData(data);
       if (!validation.valid) {
-        return {success: false, error: validation.errors.join(', ')};
+        return { success: false, error: validation.errors.join(', ') };
       }
 
       try {
@@ -126,10 +126,10 @@ export function useService() {
           });
         });
 
-        return {success: true, id};
+        return { success: true, id };
       } catch (error) {
         console.error('[useService] createService failed:', error);
-        return {success: false, error: error.message};
+        return { success: false, error: error.message };
       }
     },
     [realm],
@@ -139,7 +139,7 @@ export function useService() {
   const updateService = useCallback(
     (serviceId, updates = {}) => {
       if (!serviceId) {
-        return {success: false, error: 'Service ID is required'};
+        return { success: false, error: 'Service ID is required' };
       }
 
       try {
@@ -158,10 +158,10 @@ export function useService() {
           service.updatedAt = new Date();
         });
 
-        return {success: true};
+        return { success: true };
       } catch (error) {
         console.error('[useService] updateService failed:', error);
-        return {success: false, error: error.message};
+        return { success: false, error: error.message };
       }
     },
     [realm],
@@ -171,7 +171,7 @@ export function useService() {
   const deleteService = useCallback(
     serviceId => {
       if (!serviceId) {
-        return {success: false, error: 'Service ID is required'};
+        return { success: false, error: 'Service ID is required' };
       }
 
       try {
@@ -183,10 +183,10 @@ export function useService() {
           realm.delete(service);
         });
 
-        return {success: true};
+        return { success: true };
       } catch (error) {
         console.error('[useService] deleteService failed:', error);
-        return {success: false, error: error.message};
+        return { success: false, error: error.message };
       }
     },
     [realm],

@@ -5,11 +5,13 @@ import {
   HistoryScreen,
   GarageScreen,
   RemindersScreen,
+  ReminderSettingsScreen,
   SplashScreen,
   MotorcycleScreen,
   MotorcycleDetailScreen,
   ServiceScreen,
   ServiceDetailScreen,
+  MotoAIScreen,
 } from '../screens';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigator } from '../components';
@@ -55,6 +57,8 @@ const Navigations = () => {
       <Stack.Screen name="MotorcycleDetailScreen" component={MotorcycleDetailScreen} />
       <Stack.Screen name="ServiceScreen" component={ServiceScreen} />
       <Stack.Screen name="ServiceDetailScreen" component={ServiceDetailScreen} />
+      <Stack.Screen name="ReminderSettingsScreen" component={ReminderSettingsScreen} />
+      <Stack.Screen name="MotoAIScreen" component={MotoAIScreen} />
     </Stack.Navigator>
   );
 };

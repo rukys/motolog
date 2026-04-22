@@ -18,6 +18,7 @@ import {
   Plus,
   Bike,
   AlertTriangle,
+  Sparkles,
 } from 'lucide-react-native';
 import Realm from 'realm';
 
@@ -315,9 +316,26 @@ export default function HomeScreen({ navigation }) {
           </View>
         </ServiceInfoCard>
 
+        {/* Add Service Button */}
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('ServiceScreen', {
+              motorcycleId: activeMotorcycle?._id?.toHexString(),
+              motorcycleName: activeMotorcycle?.name,
+              motorcyclePlate: activeMotorcycle?.plateNumber,
+            })
+          }
+          activeOpacity={0.8}
+          style={tw.style(
+            'flex-row items-center justify-center bg-primary/10 border border-primary/30 p-4 rounded-xl mt-4 mx-1',
+          )}>
+          <Plus size={20} color={tw.color('primary')} />
+          <Text style={tw.style('text-primary font-montserrat-bold ml-2')}>Log New Service</Text>
+        </TouchableOpacity>
+
         {/* Recent Service Logs */}
         {recentServices.length > 0 && (
-          <View style={tw.style('mt-4')}>
+          <View style={tw.style('mt-6')}>
             <Text
               style={tw.style(
                 'text-white font-montserrat-bold text-lg mb-3 mx-1',
@@ -340,15 +358,9 @@ export default function HomeScreen({ navigation }) {
         )}
       </ScrollView>
 
-      {/* Floating Action Button */}
+      {/* Floating Action Button - AI */}
       <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('ServiceScreen', {
-            motorcycleId: activeMotorcycle?._id?.toHexString(),
-            motorcycleName: activeMotorcycle?.name,
-            motorcyclePlate: activeMotorcycle?.plateNumber,
-          })
-        }
+        onPress={() => navigation.navigate('MotoAIScreen')}
         activeOpacity={0.8}
         style={tw.style(
           'absolute bottom-6 right-6 bg-primary w-14 h-14 rounded-full items-center justify-center',
@@ -360,7 +372,7 @@ export default function HomeScreen({ navigation }) {
             elevation: 8,
           },
         )}>
-        <Plus size={26} color={tw.color('white')} />
+        <Sparkles size={26} color={tw.color('white')} />
       </TouchableOpacity>
     </Container>
   );

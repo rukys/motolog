@@ -1,13 +1,32 @@
-import React, {useCallback, useState} from 'react';
-import {View, Text, TouchableOpacity, Modal, TextInput, Alert} from 'react-native';
+import React, { useCallback, useState } from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  TextInput,
+  Alert,
+} from 'react-native';
 import tw from '../../../tailwind';
-import {Bike, ChevronLeft, ChevronRight, Pencil, X, Check} from 'lucide-react-native';
+import {
+  Bike,
+  ChevronLeft,
+  ChevronRight,
+  Pencil,
+  X,
+  Check,
+} from 'lucide-react-native';
 
-const MotorcycleSelector = ({motorcycles = [], activeMotorcycleId, onSelect, onEditOdo}) => {
+const MotorcycleSelector = ({
+  motorcycles = [],
+  activeMotorcycleId,
+  onSelect,
+  onEditOdo,
+}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [tempOdo, setTempOdo] = useState('');
   const currentIndex = motorcycles.findIndex(
-    m => m._id.toHexString() === activeMotorcycleId
+    m => m._id.toHexString() === activeMotorcycleId,
   );
   const safeIndex = currentIndex >= 0 ? currentIndex : 0;
 
@@ -23,8 +42,7 @@ const MotorcycleSelector = ({motorcycles = [], activeMotorcycleId, onSelect, onE
     if (motorcycles.length === 0) {
       return;
     }
-    const prevIndex =
-      (safeIndex - 1 + motorcycles.length) % motorcycles.length;
+    const prevIndex = (safeIndex - 1 + motorcycles.length) % motorcycles.length;
     onSelect?.(motorcycles[prevIndex]);
   }, [safeIndex, motorcycles, onSelect]);
 
@@ -56,7 +74,7 @@ const MotorcycleSelector = ({motorcycles = [], activeMotorcycleId, onSelect, onE
       {/* Left Arrow */}
       <TouchableOpacity
         onPress={goPrev}
-        hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
+        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         style={tw.style('p-1')}>
         <ChevronLeft size={22} color={tw.color('darkGrey')} />
       </TouchableOpacity>
@@ -85,12 +103,13 @@ const MotorcycleSelector = ({motorcycles = [], activeMotorcycleId, onSelect, onE
             <Text
               style={tw.style('text-darkGrey font-montserrat text-sm')}
               numberOfLines={1}>
-              {current.plateNumber} • {current.currentOdoMeter?.toLocaleString('id-ID')} KM
+              {current.plateNumber} •{' '}
+              {current.currentOdoMeter?.toLocaleString('id-ID')} KM
             </Text>
             {onEditOdo && (
               <TouchableOpacity
                 onPress={handleEditPress}
-                hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+                hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
                 style={tw.style('ml-2')}>
                 <Pencil size={14} color={tw.color('primary')} />
               </TouchableOpacity>
@@ -102,15 +121,22 @@ const MotorcycleSelector = ({motorcycles = [], activeMotorcycleId, onSelect, onE
       {/* Right Arrow */}
       <TouchableOpacity
         onPress={goNext}
-        hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
+        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         style={tw.style('p-1')}>
         <ChevronRight size={22} color={tw.color('darkGrey')} />
       </TouchableOpacity>
 
       <Modal transparent visible={isModalVisible} animationType="fade">
-        <View style={tw.style('flex-1 bg-dark/80 justify-center items-center px-6')}>
-          <View style={tw.style('bg-secondary w-full rounded-2xl p-6 border border-darkGrey')}>
-            <View style={tw.style('flex-row justify-between items-center mb-4')}>
+        <View
+          style={tw.style(
+            'flex-1 bg-dark/80 justify-center items-center px-6',
+          )}>
+          <View
+            style={tw.style(
+              'bg-secondary w-full rounded-2xl p-6 border border-darkGrey',
+            )}>
+            <View
+              style={tw.style('flex-row justify-between items-center mb-4')}>
               <Text style={tw.style('text-white font-montserratBold text-lg')}>
                 Update Odometer
               </Text>
@@ -125,20 +151,28 @@ const MotorcycleSelector = ({motorcycles = [], activeMotorcycleId, onSelect, onE
               value={tempOdo}
               onChangeText={setTempOdo}
               keyboardType="number-pad"
-              style={tw.style('bg-dark text-white font-montserratBold text-xl p-4 rounded-xl border border-primary/50 mb-6 text-center')}
+              style={tw.style(
+                'bg-dark text-white font-montserratBold text-xl p-4 rounded-xl border border-primary/50 mb-6 text-center',
+              )}
               autoFocus
             />
             <TouchableOpacity
               onPress={handleSaveOdo}
-              style={tw.style('bg-primary rounded-xl p-4 flex-row justify-center items-center', {
-                shadowColor: '#ff6600',
-                shadowOffset: { width: 0, height: 4 },
-                shadowOpacity: 0.3,
-                shadowRadius: 6,
-                elevation: 8,
-              })}>
+              style={tw.style(
+                'bg-primary rounded-xl p-4 flex-row justify-center items-center',
+                {
+                  shadowColor: '#ff6600',
+                  shadowOffset: { width: 0, height: 4 },
+                  shadowOpacity: 0.3,
+                  shadowRadius: 6,
+                  elevation: 8,
+                },
+              )}>
               <Check size={20} color={tw.color('white')} />
-              <Text style={tw.style('text-white font-montserratBold text-base ml-2')}>
+              <Text
+                style={tw.style(
+                  'text-white font-montserratBold text-base ml-2',
+                )}>
                 Save Update
               </Text>
             </TouchableOpacity>

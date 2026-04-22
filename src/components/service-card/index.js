@@ -52,10 +52,18 @@ const ServiceCard = memo(({
     return `Rp ${amount.toLocaleString('id-ID')}`;
   };
 
-  // Parse items from JSON string
   const items = (() => {
     try {
-      return JSON.parse(service.items || '[]');
+      let parsed = JSON.parse(service.items || '[]');
+      if (!Array.isArray(parsed)) {
+        if (typeof parsed === 'string') {
+          parsed = JSON.parse(parsed);
+        }
+        if (!Array.isArray(parsed)) {
+          parsed = [];
+        }
+      }
+      return parsed;
     } catch {
       return [];
     }

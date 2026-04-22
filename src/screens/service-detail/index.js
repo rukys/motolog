@@ -37,10 +37,18 @@ export default function ServiceDetailScreen({navigation, route}) {
     );
   }, [service, motorcycles]);
 
-  // Parse items
   const items = useMemo(() => {
     try {
-      return JSON.parse(service?.items || '[]');
+      let parsed = JSON.parse(service?.items || '[]');
+      if (!Array.isArray(parsed)) {
+        if (typeof parsed === 'string') {
+          parsed = JSON.parse(parsed);
+        }
+        if (!Array.isArray(parsed)) {
+          parsed = [];
+        }
+      }
+      return parsed;
     } catch {
       return [];
     }

@@ -9,6 +9,8 @@ import ServiceInfoCard from './service-info-card';
 import ServiceCard from './service-card';
 import BaseCard from './base-card';
 import PartsHealthCard from './parts-health-card';
+import ExpenseAnalyticsCard from './expense-analytics-card';
+import DiagnosticCard from './diagnostic-card';
 
 export {
   Container,
@@ -22,4 +24,6 @@ export {
   ServiceCard,
   BaseCard,
   PartsHealthCard,
+  ExpenseAnalyticsCard,
+  DiagnosticCard,
 };

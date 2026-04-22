@@ -42,7 +42,7 @@ export async function scheduleTimeReminder(monthsInterval, lastServiceDate, moto
       {
         id: 'time-reminder',
         title: '🔧 Waktunya Servis!',
-        body: `Berdasarkan jadwal, sudah waktunya lu ngecek dan servis ${motorcycleName || 'motor lu'}.`,
+        body: `Berdasarkan jadwal, sudah waktunya kamu ngecek dan servis ${motorcycleName || 'motor kamu'}.`,
         android: {
           channelId: CHANNEL_ID,
           pressAction: {
@@ -113,7 +113,7 @@ export async function sendTestNotification() {
       {
         id: 'test-reminder',
         title: 'Test Notifikasi MotoLog 🏍️',
-        body: 'Kalau lu liat pesan ini, berarti Native Notification-nya BERHASIL jalan!',
+        body: 'Kalau kamu liat pesan ini, berarti Native Notification-nya BERHASIL jalan!',
         android: {
           channelId: CHANNEL_ID,
           pressAction: {

@@ -1,8 +1,8 @@
 // src/hooks/use-motorcycle.js
-import {useQuery, useRealm} from '@realm/react';
-import {useCallback} from 'react';
+import { useQuery, useRealm } from '@realm/react';
+import { useCallback } from 'react';
 import Realm from 'realm';
-import {Motorcycle} from '../models/motorcycle';
+import { Motorcycle } from '../models/motorcycle';
 
 // ─── Validation Helpers ──────────────────────────────────────────────
 
@@ -62,7 +62,7 @@ function validateMotorcycleData(data) {
     errors.push(odoErr);
   }
 
-  return {valid: errors.length === 0, errors};
+  return { valid: errors.length === 0, errors };
 }
 
 // ─── Hook ────────────────────────────────────────────────────────────
@@ -125,7 +125,7 @@ export function useMotorcycle() {
       // Validate input
       const validation = validateMotorcycleData(data);
       if (!validation.valid) {
-        return {success: false, error: validation.errors.join(', ')};
+        return { success: false, error: validation.errors.join(', ') };
       }
 
       try {
@@ -143,10 +143,10 @@ export function useMotorcycle() {
           });
         });
 
-        return {success: true, id};
+        return { success: true, id };
       } catch (error) {
         console.error('[useMotorcycle] createMotorcycle failed:', error);
-        return {success: false, error: error.message};
+        return { success: false, error: error.message };
       }
     },
     [realm],
@@ -164,36 +164,36 @@ export function useMotorcycle() {
   const updateMotorcycle = useCallback(
     (motorcycleId, updates = {}) => {
       if (!motorcycleId) {
-        return {success: false, error: 'Motorcycle ID is required'};
+        return { success: false, error: 'Motorcycle ID is required' };
       }
 
       if (Object.keys(updates).length === 0) {
-        return {success: false, error: 'No updates provided'};
+        return { success: false, error: 'No updates provided' };
       }
 
       // Validate individual fields if present
       if (updates.name !== undefined) {
         const err = validateRequiredString(updates.name, 'Name');
         if (err) {
-          return {success: false, error: err};
+          return { success: false, error: err };
         }
       }
       if (updates.model !== undefined) {
         const err = validateRequiredString(updates.model, 'Model');
         if (err) {
-          return {success: false, error: err};
+          return { success: false, error: err };
         }
       }
       if (updates.plateNumber !== undefined) {
         const err = validateRequiredString(updates.plateNumber, 'Plate number');
         if (err) {
-          return {success: false, error: err};
+          return { success: false, error: err };
         }
       }
       if (updates.currentOdoMeter !== undefined) {
         const err = validateOdometer(updates.currentOdoMeter);
         if (err) {
-          return {success: false, error: err};
+          return { success: false, error: err };
         }
       }
 
@@ -234,10 +234,10 @@ export function useMotorcycle() {
           });
         });
 
-        return {success: true};
+        return { success: true };
       } catch (error) {
         console.error('[useMotorcycle] updateMotorcycle failed:', error);
-        return {success: false, error: error.message};
+        return { success: false, error: error.message };
       }
     },
     [realm],
@@ -253,7 +253,7 @@ export function useMotorcycle() {
    */
   const updateOdometer = useCallback(
     (motorcycleId, newOdoMeter) => {
-      return updateMotorcycle(motorcycleId, {currentOdoMeter: newOdoMeter});
+      return updateMotorcycle(motorcycleId, { currentOdoMeter: newOdoMeter });
     },
     [updateMotorcycle],
   );
@@ -268,7 +268,7 @@ export function useMotorcycle() {
   const deleteMotorcycle = useCallback(
     motorcycleId => {
       if (!motorcycleId) {
-        return {success: false, error: 'Motorcycle ID is required'};
+        return { success: false, error: 'Motorcycle ID is required' };
       }
 
       try {
@@ -283,10 +283,10 @@ export function useMotorcycle() {
           realm.delete(motorcycle);
         });
 
-        return {success: true};
+        return { success: true };
       } catch (error) {
         console.error('[useMotorcycle] deleteMotorcycle failed:', error);
-        return {success: false, error: error.message};
+        return { success: false, error: error.message };
       }
     },
     [realm],
@@ -307,10 +307,10 @@ export function useMotorcycle() {
         realm.delete(allMotorcycles);
       });
 
-      return {success: true, count};
+      return { success: true, count };
     } catch (error) {
       console.error('[useMotorcycle] deleteAllMotorcycles failed:', error);
-      return {success: false, error: error.message};
+      return { success: false, error: error.message };
     }
   }, [realm]);
 
