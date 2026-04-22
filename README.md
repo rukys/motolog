@@ -72,7 +72,13 @@ Make sure you have set up your React Native environment as per the [official doc
    npm install
    ```
 
-3. **Install Native iOS Dependencies**:
+3. **Set up Environment Variables**:
+   Create a `.env` file in the root directory and add your Google Gemini API Key:
+   ```env
+   GEMINI_API_KEY=your_api_key_here
+   ```
+
+4. **Install Native iOS Dependencies**:
    ```bash
    cd ios && pod install && cd ..
    ```
