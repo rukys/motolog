@@ -25,6 +25,13 @@
 
 ---
 
+## 🌐 Landing Page
+
+Visit the official MotoLog landing page for a detailed visual overview and feature highlights:
+**[Live Demo: MotoLog Premium Landing Page](https://rukys.github.io/motolog/)**
+
+---
+
 ## ✨ Key Features
 
 - **🤖 MotoAI (Agentic GenUI Assistant)**: An embedded AI assistant powered by Gemini. MotoAI has full contextual awareness of your garage and uses Tool Calling (Agentic AI) to generate rich, interactive UI cards directly within the chat. 
