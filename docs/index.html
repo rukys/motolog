@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MotoLog | MotoAI - Asisten Mekanik Digital Kamu</title>
     <meta name="description" content="MotoLog: Aplikasi manajemen perawatan motor pintar dengan MotoAI. Lacak servis, pengingat otomatis, dan diagnosa kesehatan motor dalam satu genggaman.">
+    <meta property="og:title" content="MotoLog - Rawat Motor Lebih Pintar">
+    <meta property="og:description" content="Aplikasi manajemen perawatan motor pintar dengan Agentic AI. Gratis & 100% Offline.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rukys.github.io/motolog">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -19,7 +23,7 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="container">
             <div class="logo">
                 <span class="logo-icon"><i data-lucide="bike"></i></span>
@@ -29,16 +33,32 @@
                 <li><a href="#features">Fitur</a></li>
                 <li><a href="#motoai">MotoAI</a></li>
                 <li><a href="#screenshots">Tampilan</a></li>
+                <li><a href="#tech">Teknologi</a></li>
                 <li><a href="https://github.com/rukys/motolog" class="btn-github"><i data-lucide="github"></i> GitHub</a></li>
             </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#features" class="mobile-link">Fitur</a>
+        <a href="#motoai" class="mobile-link">MotoAI</a>
+        <a href="#screenshots" class="mobile-link">Tampilan</a>
+        <a href="#tech" class="mobile-link">Teknologi</a>
+        <a href="https://github.com/rukys/motolog">GitHub</a>
+    </div>
+
     <!-- Hero Section -->
     <header class="hero">
+        <canvas id="particles-canvas"></canvas>
         <div class="container hero-grid">
-            <div class="hero-content">
-                <div class="badge">Solusi Rider Modern</div>
+            <div class="hero-content reveal-element">
+                <div class="badge"><i data-lucide="zap" style="width:14px;height:14px"></i> Solusi Rider Modern</div>
                 <h1>Rawat Motor Jauh Lebih <span>Pintar & Teratur</span></h1>
                 <p>MotoLog menggabungkan kekuatan Agentic AI untuk memantau kesehatan motormu. Dapatkan pengingat otomatis dan saran proaktif agar performa tetap prima.</p>
                 <div class="hero-btns">
@@ -48,15 +68,23 @@
                 <div class="hero-stats">
                     <div class="stat">
                         <span class="stat-val">100%</span>
-                        <span class="stat-label">Offline First</span>
+                        <span class="stat-label">Offline</span>
                     </div>
                     <div class="stat">
                         <span class="stat-val">AI</span>
                         <span class="stat-label">Powered</span>
                     </div>
+                    <div class="stat">
+                        <span class="stat-val">Gratis</span>
+                        <span class="stat-label">Selamanya</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-val">OSS</span>
+                        <span class="stat-label">Open Source</span>
+                    </div>
                 </div>
             </div>
-            <div class="hero-image">
+            <div class="hero-image reveal-element">
                 <div class="phone-mockup">
                     <img src="assets/screenshots/1_home_screen.png" alt="MotoLog Home Screen">
                 </div>
@@ -64,40 +92,47 @@
         </div>
     </header>
 
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+            <path d="M0,60 C360,0 720,60 1080,20 C1260,0 1380,30 1440,60 L1440,60 L0,60 Z" fill="#0f0f0f"/>
+        </svg>
+    </div>
+
     <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-element">
                 <h2>Fitur Utama <span>MotoLog</span></h2>
                 <p>Segala yang kamu butuhkan untuk manajemen kendaraan dalam satu genggaman.</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card reveal-element">
                     <div class="f-icon"><i data-lucide="brain-circuit"></i></div>
                     <h3>MotoAI Assistant</h3>
                     <p>Ngobrol sama mekanik digital yang tahu sejarah servismu. Tanya jadwal oli atau konsultasi masalah mesin.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card reveal-element">
                     <div class="f-icon"><i data-lucide="activity"></i></div>
                     <h3>Parts Health</h3>
                     <p>Pantau kesehatan setiap komponen secara real-time berdasarkan usia pakai dan jarak tempuh.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card reveal-element">
                     <div class="f-icon"><i data-lucide="bell-ring"></i></div>
                     <h3>Smart Reminders</h3>
                     <p>Pengingat otomatis yang nggak bakal bikin kamu telat ganti oli atau perpanjang STNK lagi.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card reveal-element">
                     <div class="f-icon"><i data-lucide="database"></i></div>
                     <h3>100% Offline</h3>
                     <p>Semua data tersimpan aman di HP-mu. Tanpa internet, tanpa biaya langganan, tanpa ribet.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card reveal-element">
                     <div class="f-icon"><i data-lucide="wallet"></i></div>
                     <h3>Expense Tracking</h3>
                     <p>Catat pengeluaran servis dan bensin secara detail untuk manajemen keuangan yang lebih baik.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card reveal-element">
                     <div class="f-icon"><i data-lucide="smartphone"></i></div>
                     <h3>Quick Log</h3>
                     <p>Input data servis secepat kilat dengan antarmuka yang intuitif dan modern.</p>
@@ -106,14 +141,21 @@
         </div>
     </section>
 
+    <!-- Wave Divider -->
+    <div class="wave-divider" style="transform: scaleY(-1);">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+            <path d="M0,60 C360,0 720,60 1080,20 C1260,0 1380,30 1440,60 L1440,60 L0,60 Z" fill="#0f0f0f"/>
+        </svg>
+    </div>
+
     <!-- MotoAI Deep Dive -->
     <section id="motoai" class="motoai-highlight">
         <div class="container">
             <div class="motoai-grid">
-                <div class="motoai-image">
+                <div class="motoai-image reveal-element">
                     <img src="assets/screenshots/10_motoai_screen.png" alt="MotoAI Chat Interaction">
                 </div>
-                <div class="motoai-content">
+                <div class="motoai-content reveal-element">
                     <div class="ai-badge"><i data-lucide="sparkles"></i> Agentic AI Inside</div>
                     <h2>Kenalan sama <span>Mekanik Pribadimu</span></h2>
                     <p>MotoAI menggunakan model Gemini terbaru untuk menganalisis data historis motormu. Dia bisa memberikan saran proaktif sebelum masalah muncul.</p>
@@ -122,15 +164,30 @@
                         <li><i data-lucide="check-circle-2"></i> Rekapitulasi servis lewat percakapan</li>
                         <li><i data-lucide="check-circle-2"></i> Pengingat proaktif jika data kosong</li>
                     </ul>
+                    <!-- Chat Preview -->
+                    <div class="chat-preview">
+                        <div class="chat-bubble user">Kapan terakhir ganti oli motor gue?</div>
+                        <div class="chat-bubble ai">Ganti oli terakhir kamu pada 15 Maret 2026 di km 12.450. Sudah waktunya ganti lagi! 🔧</div>
+                        <div class="typing-indicator">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+            <path d="M0,0 C480,60 960,0 1440,40 L1440,60 L0,60 Z" fill="#0f0f0f"/>
+        </svg>
+    </div>
+
     <!-- Screenshots Gallery -->
     <section id="screenshots" class="screenshots">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-element">
                 <h2>Visual <span>Antarmuka</span></h2>
                 <p>Desain modern yang dirancang untuk kenyamanan mata dan kemudahan penggunaan.</p>
             </div>
@@ -142,6 +199,7 @@
                     <div class="screenshot-item"><img src="assets/screenshots/7_servicelist_filled_screen.png" alt="Service List"></div>
                     <div class="screenshot-item"><img src="assets/screenshots/8_remiders_filled_screen.png" alt="Reminders"></div>
                     <div class="screenshot-item"><img src="assets/screenshots/9_config_reminders_screen.png" alt="Config Reminders"></div>
+                    <div class="screenshot-item"><img src="assets/screenshots/10_motoai_screen.png" alt="MotoAI Chat"></div>
                 </div>
                 <button class="scroll-btn next-btn" id="nextBtn"><i data-lucide="chevron-right"></i></button>
             </div>
@@ -149,14 +207,13 @@
     </section>
 
     <!-- Tech Stack -->
-    <section class="tech-stack">
+    <section id="tech" class="tech-stack">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-element">
                 <h2>Dibuat dengan <span>Teknologi Terkini</span></h2>
                 <p>Kombinasi tools modern yang memastikan performa aplikasi tetap cepat, aman, dan responsif.</p>
             </div>
-            
-            <div class="tech-logos">
+            <div class="tech-logos reveal-element">
                 <div class="tech-card">
                     <i data-lucide="smartphone"></i>
                     <span>React Native 0.79</span>
@@ -177,6 +234,17 @@
                     <i data-lucide="layout"></i>
                     <span>Tailwind CSS</span>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content reveal-element">
+                <h2>Siap Rawat Motor Lebih <span>Pintar</span>?</h2>
+                <p>Unduh MotoLog sekarang dan rasakan kemudahan manajemen perawatan motor dengan bantuan AI.</p>
+                <a href="https://github.com/rukys/motolog" class="btn-primary"><i data-lucide="github"></i> Download di GitHub</a>
             </div>
         </div>
     </section>
@@ -209,16 +277,17 @@
                         <li><a href="#features">Fitur Utama</a></li>
                         <li><a href="#motoai">MotoAI Assistant</a></li>
                         <li><a href="#screenshots">Tampilan Aplikasi</a></li>
+                        <li><a href="#tech">Teknologi</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
                     <h4>Tentang Kami</h4>
                     <ul>
-                        <li><a href="#">Dokumentasi</a></li>
-                        <li><a href="#">Panduan Pengguna</a></li>
+                        <li><a href="https://github.com/rukys/motolog">Dokumentasi</a></li>
+                        <li><a href="https://github.com/rukys/motolog#readme">Panduan Pengguna</a></li>
                         <li><a href="#">Privasi & Kebijakan</a></li>
-                        <li><a href="#">Kontak Kami</a></li>
+                        <li><a href="mailto:sektyawan33@gmail.com">Kontak Kami</a></li>
                     </ul>
                 </div>
                 
