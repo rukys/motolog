@@ -23,7 +23,7 @@ import {
   ArrowLeft,
   Send,
   Sparkles,
-  AlertCircle,
+  // AlertCircle,
   Edit3,
   ChevronRight,
   X,
@@ -268,7 +268,7 @@ export default function MotoAIScreen({ navigation }) {
                     ? 'bg-primary/20 self-end rounded-tr-sm border border-primary/30'
                     : 'bg-secondary self-start rounded-tl-sm',
                 )}>
-                {message.toolsCalled && (
+                {/* {message.toolsCalled && (
                   <View
                     style={tw.style(
                       'flex-row items-center bg-primary/20 self-start px-2 py-1 flex-wrap rounded-full mb-2',
@@ -285,7 +285,7 @@ export default function MotoAIScreen({ navigation }) {
                       Reminder Scheduled
                     </Text>
                   </View>
-                )}
+                )} */}
 
                 {message.text ? (
                   <Text
@@ -297,102 +297,103 @@ export default function MotoAIScreen({ navigation }) {
                 ) : null}
 
                 {/* Generative UI Component Rendering */}
-                {message.component === 'MotorcycleStatus' && activeMotorcycle && (
-                  <View
-                    style={tw.style(
-                      'mt-4 bg-dark border border-primary/30 rounded-xl overflow-hidden w-64',
-                    )}>
+                {message.component === 'MotorcycleStatus' &&
+                  activeMotorcycle && (
                     <View
                       style={tw.style(
-                        'p-3 bg-secondary/80 border-b border-white/5',
+                        'mt-4 bg-dark border border-primary/30 rounded-xl overflow-hidden w-64',
                       )}>
-                      <View style={tw.style('flex-row items-center mb-2')}>
+                      <View
+                        style={tw.style(
+                          'p-3 bg-secondary/80 border-b border-white/5',
+                        )}>
+                        <View style={tw.style('flex-row items-center mb-2')}>
+                          <View
+                            style={tw.style(
+                              'bg-darkGrey rounded-full w-8 h-8 items-center justify-center mr-2',
+                            )}>
+                            <Bike size={14} color={tw.color('white')} />
+                          </View>
+                          <View>
+                            <Text
+                              style={tw.style(
+                                'text-white font-montserratBold text-sm',
+                              )}
+                              numberOfLines={1}>
+                              {activeMotorcycle.name}
+                            </Text>
+                            <Text
+                              style={tw.style(
+                                'text-primary font-montserrat text-xs',
+                              )}>
+                              {activeMotorcycle.plateNumber}
+                            </Text>
+                          </View>
+                        </View>
                         <View
                           style={tw.style(
-                            'bg-darkGrey rounded-full w-8 h-8 items-center justify-center mr-2',
+                            'flex-row items-center justify-between mt-1',
                           )}>
-                          <Bike size={14} color={tw.color('white')} />
-                        </View>
-                        <View>
+                          <Text
+                            style={tw.style(
+                              'text-white/60 font-montserrat text-xs',
+                            )}>
+                            Odometer Asli:
+                          </Text>
                           <Text
                             style={tw.style(
                               'text-white font-montserratBold text-sm',
-                            )}
-                            numberOfLines={1}>
-                            {activeMotorcycle.name}
-                          </Text>
-                          <Text
-                            style={tw.style(
-                              'text-primary font-montserrat text-xs',
                             )}>
-                            {activeMotorcycle.plateNumber}
+                            {activeMotorcycle.currentOdoMeter.toLocaleString(
+                              'id-ID',
+                            )}{' '}
+                            KM
                           </Text>
                         </View>
                       </View>
-                      <View
-                        style={tw.style(
-                          'flex-row items-center justify-between mt-1',
-                        )}>
-                        <Text
+
+                      <View style={tw.style('flex-row items-center')}>
+                        <TouchableOpacity
                           style={tw.style(
-                            'text-white/60 font-montserrat text-xs',
-                          )}>
-                          Odometer Asli:
-                        </Text>
-                        <Text
+                            'flex-1 flex-row items-center justify-center py-2.5 border-r border-white/5 bg-secondary',
+                          )}
+                          activeOpacity={0.7}
+                          onPress={() => {
+                            setTempOdo(
+                              activeMotorcycle.currentOdoMeter.toString(),
+                            );
+                            setIsModalVisible(true);
+                          }}>
+                          <Edit3 size={14} color={tw.color('white')} />
+                          <Text
+                            style={tw.style(
+                              'text-white font-montserrat ml-1.5 text-xs',
+                            )}>
+                            Update KM
+                          </Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
                           style={tw.style(
-                            'text-white font-montserratBold text-sm',
-                          )}>
-                          {activeMotorcycle.currentOdoMeter.toLocaleString(
-                            'id-ID',
-                          )}{' '}
-                          KM
-                        </Text>
+                            'flex-1 flex-row items-center justify-center py-2.5 bg-primary/20',
+                          )}
+                          activeOpacity={0.7}
+                          onPress={() =>
+                            navigation.navigate('MotorcycleDetailScreen', {
+                              motorcycleId: activeMotorcycle._id.toHexString(),
+                            })
+                          }>
+                          <Text
+                            style={tw.style(
+                              'text-primary font-montserratBold ml-1 text-xs mr-1',
+                            )}>
+                            Lihat Detail
+                          </Text>
+                          <ChevronRight size={14} color={tw.color('primary')} />
+                        </TouchableOpacity>
                       </View>
                     </View>
-
-                    <View style={tw.style('flex-row items-center')}>
-                      <TouchableOpacity
-                        style={tw.style(
-                          'flex-1 flex-row items-center justify-center py-2.5 border-r border-white/5 bg-secondary',
-                        )}
-                        activeOpacity={0.7}
-                        onPress={() => {
-                          setTempOdo(
-                            activeMotorcycle.currentOdoMeter.toString(),
-                          );
-                          setIsModalVisible(true);
-                        }}>
-                        <Edit3 size={14} color={tw.color('white')} />
-                        <Text
-                          style={tw.style(
-                            'text-white font-montserrat ml-1.5 text-xs',
-                          )}>
-                          Update KM
-                        </Text>
-                      </TouchableOpacity>
-
-                      <TouchableOpacity
-                        style={tw.style(
-                          'flex-1 flex-row items-center justify-center py-2.5 bg-primary/20',
-                        )}
-                        activeOpacity={0.7}
-                        onPress={() =>
-                          navigation.navigate('MotorcycleDetailScreen', {
-                            motorcycleId: activeMotorcycle._id.toHexString(),
-                          })
-                        }>
-                        <Text
-                          style={tw.style(
-                            'text-primary font-montserratBold ml-1 text-xs mr-1',
-                          )}>
-                          Lihat Detail
-                        </Text>
-                        <ChevronRight size={14} color={tw.color('primary')} />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                )}
+                  )}
 
                 {/* Parts Health UI Component Rendering */}
                 {message.component === 'PartsHealth' && activeMotorcycle && (
@@ -419,7 +420,12 @@ export default function MotoAIScreen({ navigation }) {
                       activeMotorcycle={activeMotorcycle}
                       serviceType={message.data.serviceType}
                       items={message.data.items}
-                      onSave={(motorcycleId, type, totalPrice, serviceItems) => {
+                      onSave={(
+                        motorcycleId,
+                        type,
+                        totalPrice,
+                        serviceItems,
+                      ) => {
                         createService({
                           motorcycleId: motorcycleId,
                           serviceType: type,
@@ -464,7 +470,10 @@ export default function MotoAIScreen({ navigation }) {
                             (serviceRecord.items &&
                               serviceRecord.items
                                 .toLowerCase()
-                                .includes(message.data.searchQuery.toLowerCase()))),                      )
+                                .includes(
+                                  message.data.searchQuery.toLowerCase(),
+                                ))),
+                      )
                       .slice(0, 1)
                       .map(service => (
                         <ServiceCard
@@ -482,17 +491,18 @@ export default function MotoAIScreen({ navigation }) {
                 )}
 
                 {/* Expense Analytics UI Component Rendering */}
-                {message.component === 'ExpenseAnalytics' && activeMotorcycle && (
-                  <View style={tw.style('mt-1 w-72')}>
-                    <ExpenseAnalyticsCard
-                      services={services.filter(
-                        serviceRecord =>
-                          serviceRecord.motorcycleId?.toHexString() ===
-                          activeMotorcycle._id.toHexString(),
-                      )}
-                    />
-                  </View>
-                )}
+                {message.component === 'ExpenseAnalytics' &&
+                  activeMotorcycle && (
+                    <View style={tw.style('mt-1 w-72')}>
+                      <ExpenseAnalyticsCard
+                        services={services.filter(
+                          serviceRecord =>
+                            serviceRecord.motorcycleId?.toHexString() ===
+                            activeMotorcycle._id.toHexString(),
+                        )}
+                      />
+                    </View>
+                  )}
 
                 {/* Diagnostic Flow UI Component Rendering */}
                 {message.component === 'Diagnostic' && message.data && (

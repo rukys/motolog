@@ -822,7 +822,254 @@ span {
     padding-top: 32px;
     border-top: 1px solid var(--glass-border);
     color: var(--text-grey);
+    font-size: 14px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   GUIDE PAGE STYLES
+   ────────────────────────────────────────────────────────────────────────── */
+
+.guide-hero {
+    padding: 120px 0 60px;
+    background: radial-gradient(circle at 50% 0%, rgba(255,102,0,0.1), transparent 70%);
+    text-align: center;
+}
+
+.guide-hero h1 {
+    font-size: 48px;
+    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -1.5px;
+}
+
+.guide-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 60px;
+    padding: 60px 0 100px;
+}
+
+.guide-sidebar {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.guide-sidebar h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.guide-nav {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.guide-nav a {
+    text-decoration: none;
+    color: var(--text-grey);
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    display: block;
+}
+
+.guide-nav a:hover {
+    color: var(--text-white);
+    background: var(--glass);
+}
+
+.guide-nav a.active {
+    color: var(--primary);
+    background: rgba(255, 102, 0, 0.1);
+    font-weight: 700;
+}
+
+.guide-content {
+    max-width: 800px;
+}
+
+.guide-section {
+    margin-bottom: 80px;
+    scroll-margin-top: 100px;
+}
+
+.guide-section h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 24px;
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.guide-section h2 i {
+    color: var(--primary);
+}
+
+.guide-section p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: var(--text-grey);
+}
+
+.guide-section h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 32px 0 16px;
+    color: var(--text-white);
+}
+
+.step-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.step-num {
+    width: 32px;
+    height: 32px;
+    background: var(--primary);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.step-info h4 {
+    margin-bottom: 8px;
+    font-size: 17px;
+}
+
+.info-box {
+    background: rgba(52, 152, 219, 0.1);
+    border-left: 4px solid #3498db;
+    padding: 16px 20px;
+    border-radius: 4px 12px 12px 4px;
+    margin: 24px 0;
+    display: flex;
+    gap: 12px;
+}
+
+.info-box i { color: #3498db; flex-shrink: 0; margin-top: 4px; }
+.info-box p { margin-bottom: 0; font-size: 15px; color: var(--text-white); }
+
+.warning-box {
+    background: rgba(231, 76, 60, 0.1);
+    border-left: 4px solid #e74c3c;
+    padding: 16px 20px;
+    border-radius: 4px 12px 12px 4px;
+    margin: 24px 0;
+    display: flex;
+    gap: 12px;
+}
+
+.warning-box i { color: #e74c3c; flex-shrink: 0; margin-top: 4px; }
+.warning-box p { margin-bottom: 0; font-size: 15px; color: var(--text-white); }
+
+.guide-img {
+    width: 100%;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+    margin: 20px 0;
+}
+
+/* Responsive Guide */
+@media (max-width: 992px) {
+    .guide-layout {
+        grid-template-columns: 1fr;
+    }
+    .guide-sidebar {
+        display: none; /* In mobile, we could use a dropdown or just hidden */
+    }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   PRIVACY POLICY STYLES
+   ────────────────────────────────────────────────────────────────────────── */
+
+.policy-hero {
+    padding: 100px 0 50px;
+    background: radial-gradient(circle at 50% 0%, rgba(255,102,0,0.05), transparent 70%);
+    text-align: center;
+}
+
+.policy-hero h1 {
+    font-size: 40px;
+    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.policy-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px 100px;
+}
+
+.policy-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    margin-bottom: 30px;
+}
+
+.policy-card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.policy-card p {
+    color: var(--text-grey);
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.policy-card ul {
+    list-style: none;
+    margin-bottom: 16px;
+}
+
+.policy-card li {
+    color: var(--text-grey);
+    margin-bottom: 12px;
+    display: flex;
+    gap: 12px;
+}
+
+.policy-card li i {
+    color: var(--primary);
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.last-updated {
+    text-align: center;
+    color: var(--text-grey);
     font-size: 13px;
+    margin-top: 20px;
 }
 
 /* Responsive */

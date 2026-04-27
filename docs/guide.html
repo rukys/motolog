@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Pengguna | MotoLog</title>
+    <meta name="description" content="Panduan lengkap penggunaan aplikasi MotoLog. Mulai dari instalasi hingga penggunaan asisten MotoAI.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <!-- Guide Hero -->
+    <header class="guide-hero">
+        <div class="container reveal-element">
+            <div class="badge"><i data-lucide="book-open" style="width:14px;height:14px"></i> Dokumentasi Resmi</div>
+            <h1>Panduan <span>Pengguna</span></h1>
+            <p>Pelajari cara memaksimalkan MotoLog untuk perawatan motor yang lebih baik.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container guide-layout">
+        <!-- Sidebar -->
+        <aside class="guide-sidebar reveal-element">
+            <h4>Navigasi</h4>
+            <ul class="guide-nav">
+                <li><a href="#instalasi" class="active">Instalasi</a></li>
+                <li><a href="#setup">Setup Awal</a></li>
+                <li><a href="#tambah-motor">Tambah Motor</a></li>
+                <li><a href="#log-servis">Pencatatan Servis</a></li>
+                <li><a href="#motoai-guide">Menggunakan MotoAI</a></li>
+                <li><a href="#data-privacy">Privasi Data</a></li>
+            </ul>
+        </aside>
+
+        <!-- Content -->
+        <div class="guide-content">
+            <!-- Instalasi -->
+            <section id="instalasi" class="guide-section reveal-element">
+                <h2><i data-lucide="download-cloud"></i> Instalasi</h2>
+                <p>Anda dapat menginstal MotoLog melalui dua metode berikut. Pilih yang paling sesuai dengan kebutuhan Anda.</p>
+                
+                <!-- Play Store Card -->
+                <div class="step-card" style="border-color: rgba(255, 102, 0, 0.3); background: rgba(255, 102, 0, 0.05);">
+                    <div class="step-num" style="background: #34a853;"><i data-lucide="play" style="width: 16px; height: 16px;"></i></div>
+                    <div class="step-info">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h4>Google Play Store</h4>
+                            <span class="badge" style="margin-bottom: 0; padding: 4px 12px; font-size: 10px;">Coming Soon</span>
+                        </div>
+                        <p>Cara termudah dan teraman. Instalasi otomatis dan pembaruan rutin langsung dari Google.</p>
+                        <a href="#" class="btn-secondary" style="display: inline-flex; padding: 8px 16px; font-size: 13px; opacity: 0.6; cursor: not-allowed; margin-top: 10px;">
+                            <i data-lucide="external-link" style="width: 14px; height: 14px;"></i> Buka Play Store
+                        </a>
+                    </div>
+                </div>
+
+                <!-- GitHub Card -->
+                <div class="step-card">
+                    <div class="step-num"><i data-lucide="github" style="width: 16px; height: 16px;"></i></div>
+                    <div class="step-info">
+                        <h4>GitHub Release (APK)</h4>
+                        <p>Dapatkan versi terbaru langsung dari sumbernya. Cocok untuk Anda yang ingin mencoba fitur terbaru lebih awal.</p>
+                        
+                        <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+                            <div style="display: flex; gap: 10px; align-items: center; font-size: 14px; color: var(--text-grey);">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: #34a853;"></i>
+                                Buka halaman <a href="https://github.com/rukys/motolog/releases" target="_blank" style="color: var(--primary);">Releases</a>
+                            </div>
+                            <div style="display: flex; gap: 10px; align-items: center; font-size: 14px; color: var(--text-grey);">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: #34a853;"></i>
+                                Unduh file <code>.apk</code> terbaru
+                            </div>
+                            <div style="display: flex; gap: 10px; align-items: center; font-size: 14px; color: var(--text-grey);">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: #34a853;"></i>
+                                Izinkan 'Unknown Sources' saat instalasi
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <i data-lucide="alert-triangle"></i>
+                    <p>Pastikan Anda selalu melakukan backup data (Export) sebelum melakukan update aplikasi secara manual via APK.</p>
+                </div>
+            </section>
+
+            <!-- Setup Awal -->
+            <section id="setup" class="guide-section reveal-element">
+                <h2><i data-lucide="settings"></i> Setup Awal</h2>
+                <p>Saat pertama kali membuka aplikasi, Anda akan disambut dengan layar utama yang bersih.</p>
+                <img src="assets/screenshots/1_home_screen.png" alt="Setup Awal" class="guide-img">
+                <div class="info-box">
+                    <i data-lucide="info"></i>
+                    <p>MotoLog bekerja sepenuhnya offline. Anda tidak perlu mendaftar akun atau login untuk mulai menggunakan aplikasi.</p>
+                </div>
+            </section>
+
+            <!-- Tambah Motor -->
+            <section id="tambah-motor" class="guide-section reveal-element">
+                <h2><i data-lucide="plus-circle"></i> Menambah Kendaraan</h2>
+                <p>Langkah pertama yang harus Anda lakukan adalah mendaftarkan motor Anda ke dalam aplikasi.</p>
+                
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <div class="step-info">
+                        <h4>Klik Ikon Motor</h4>
+                        <p>Buka menu 'Motorcycle' di bagian navigasi bawah.</p>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <div class="step-info">
+                        <h4>Isi Data Kendaraan</h4>
+                        <p>Masukkan Merk, Model, dan yang paling penting adalah <strong>Odometer saat ini</strong>. Data ini akan menjadi dasar perhitungan kesehatan komponen.</p>
+                    </div>
+                </div>
+
+                <img src="assets/screenshots/6_motorcycle_filled_screen.png" alt="Motorcycle Screen" class="guide-img">
+            </section>
+
+            <!-- Log Servis -->
+            <section id="log-servis" class="guide-section reveal-element">
+                <h2><i data-lucide="clipboard-list"></i> Pencatatan Servis</h2>
+                <p>Mencatat riwayat servis sangat penting agar MotoAI bisa memberikan saran yang akurat.</p>
+                
+                <h3>Cara Mencatat Servis:</h3>
+                <ol style="color: var(--text-grey); margin-left: 20px; margin-bottom: 20px;">
+                    <li style="margin-bottom: 10px;">Masuk ke detail motor Anda.</li>
+                    <li style="margin-bottom: 10px;">Pilih tab 'Service Logs'.</li>
+                    <li style="margin-bottom: 10px;">Klik tombol tambah dan masukkan detail seperti jenis servis, biaya, dan km saat servis dilakukan.</li>
+                </ol>
+
+                <img src="assets/screenshots/7_servicelist_filled_screen.png" alt="Service Logs" class="guide-img">
+
+                <div class="info-box">
+                    <i data-lucide="sparkles"></i>
+                    <p><strong>Tips:</strong> Semakin rajin Anda mencatat, semakin pintar MotoAI memprediksi kapan Anda harus ke bengkel lagi!</p>
+                </div>
+            </section>
+
+            <!-- MotoAI -->
+            <section id="motoai-guide" class="guide-section reveal-element">
+                <h2><i data-lucide="bot"></i> Menggunakan MotoAI</h2>
+                <p>MotoAI adalah fitur unggulan yang bertindak sebagai mekanik digital pribadi Anda.</p>
+                
+                <h3>Apa yang bisa ditanyakan ke MotoAI?</h3>
+                <div class="features-grid" style="grid-template-columns: 1fr 1fr; margin-top: 20px;">
+                    <div class="feature-card" style="padding: 20px;">
+                        <h4 style="color: var(--primary); margin-bottom: 10px;">Riwayat Servis</h4>
+                        <p>"Kapan terakhir kali gue ganti oli?"</p>
+                    </div>
+                    <div class="feature-card" style="padding: 20px;">
+                        <h4 style="color: var(--primary); margin-bottom: 10px;">Diagnosa Masalah</h4>
+                        <p>"Mesin motor gue bunyi kasar pas pagi, kenapa ya?"</p>
+                    </div>
+                </div>
+
+                <img src="assets/screenshots/10_motoai_screen.png" alt="MotoAI Guide" class="guide-img">
+
+                <div class="warning-box" style="background: rgba(255, 102, 0, 0.05); border-left-color: var(--primary);">
+                    <i data-lucide="zap" style="color: var(--primary);"></i>
+                    <p style="color: var(--text-white);">MotoAI membutuhkan koneksi internet hanya saat mengirim pesan ke model AI. Namun, data kendaraan Anda tetap diproses secara lokal sebelum dikirim.</p>
+                </div>
+            </section>
+
+            <!-- Privacy -->
+            <section id="data-privacy" class="guide-section reveal-element">
+                <h2><i data-lucide="shield-check"></i> Privasi Data</h2>
+                <p>Kami sangat menghargai privasi Anda. Semua data yang Anda masukkan ke MotoLog disimpan menggunakan <strong>Realm Database</strong> langsung di perangkat Anda.</p>
+                <ul style="color: var(--text-grey); margin-left: 20px;">
+                    <li style="margin-bottom: 10px;">Tidak ada sinkronisasi cloud yang menyimpan data pribadi Anda.</li>
+                    <li style="margin-bottom: 10px;">Aplikasi bekerja 100% tanpa internet (kecuali fitur chat MotoAI).</li>
+                    <li style="margin-bottom: 10px;">Data hilang jika aplikasi dihapus tanpa backup manual.</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

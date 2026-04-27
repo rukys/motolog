@@ -39,19 +39,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ── Active nav link highlighting ──
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a:not(.btn-github)');
+  const sections = document.querySelectorAll('section[id], .guide-section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a:not(.btn-github), .guide-nav a');
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 100;
+      const sectionTop = section.offsetTop - 120;
       if (window.scrollY >= sectionTop) {
         current = section.getAttribute('id');
       }
     });
     navLinks.forEach((link) => {
       link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
+      const href = link.getAttribute('href');
+      // Handle both local anchors and potential cross-page links
+      if (href === '#' + current || (href.includes('#') && href.split('#')[1] === current)) {
         link.classList.add('active');
       }
     });
