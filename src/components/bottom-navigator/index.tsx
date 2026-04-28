@@ -4,11 +4,11 @@ import tw from '../../../tailwind';
 import TabItem from '../tab-item';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
-const BottomNavigator: React.FC<BottomTabBarProps> = ({
+const BottomNavigator = ({
   state,
   descriptors,
   navigation,
-}) => {
+}: BottomTabBarProps) => {
   return (
     <View style={tw.style('bg-dark')}>
       <View

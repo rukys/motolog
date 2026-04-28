@@ -85,9 +85,12 @@ export function useMotorcycle() {
           });
         });
         return { success: true, id };
-      } catch (error: any) {
-        console.error('[useMotorcycle] createMotorcycle failed:', error);
-        return { success: false, error: error.message };
+      } catch (error: unknown) {
+        const err = error as Error;
+        if (__DEV__) {
+          console.error('[useMotorcycle] createMotorcycle failed:', err);
+        }
+        return { success: false, error: err.message };
       }
     },
     [realm]
@@ -125,9 +128,12 @@ export function useMotorcycle() {
           });
         });
         return { success: true };
-      } catch (error: any) {
-        console.error('[useMotorcycle] updateMotorcycle failed:', error);
-        return { success: false, error: error.message };
+      } catch (error: unknown) {
+        const err = error as Error;
+        if (__DEV__) {
+          console.error('[useMotorcycle] updateMotorcycle failed:', err);
+        }
+        return { success: false, error: err.message };
       }
     },
     [realm]
@@ -148,8 +154,9 @@ export function useMotorcycle() {
           if (motorcycle) {realm.delete(motorcycle);}
         });
         return { success: true };
-      } catch (error: any) {
-        return { success: false, error: error.message };
+      } catch (error: unknown) {
+        const err = error as Error;
+        return { success: false, error: err.message };
       }
     },
     [realm]

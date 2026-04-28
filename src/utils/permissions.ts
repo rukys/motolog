@@ -63,7 +63,9 @@ export async function requestCameraPermission(): Promise<boolean> {
         return false;
     }
   } catch (error) {
-    console.error('[permissions] requestCameraPermission failed:', error);
+    if (__DEV__) {
+      console.error('[permissions] requestCameraPermission failed:', error);
+    }
     return false;
   }
 }
@@ -98,10 +100,12 @@ export async function requestPhotoLibraryPermission(): Promise<boolean> {
         return false;
     }
   } catch (error) {
-    console.error(
-      '[permissions] requestPhotoLibraryPermission failed:',
-      error,
-    );
+    if (__DEV__) {
+      console.error(
+        '[permissions] requestPhotoLibraryPermission failed:',
+        error,
+      );
+    }
     return false;
   }
 }

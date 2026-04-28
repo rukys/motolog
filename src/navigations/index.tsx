@@ -45,7 +45,7 @@ const Tab = createBottomTabNavigator<MainTabParamList>();
 
 const AppBarScreen = () => {
   return (
-    <Tab.Navigator tabBar={(props) => <BottomNavigator {...props} />}>
+    <Tab.Navigator tabBar={BottomNavigator}>
       <Tab.Screen
         name="HomeScreen"
         component={HomeScreen as any}

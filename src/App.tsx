@@ -56,7 +56,9 @@ const App = () => {
               }
             }
           } catch (error) {
-            console.error('[App] Migration failed:', error);
+            if (__DEV__) {
+              console.error('[App] Migration failed:', error);
+            }
           }
         }}>
         <SafeAreaProvider>
@@ -71,7 +73,9 @@ const App = () => {
 
               const trackScreenView = (name?: string) => {
                 // Your implementation of analytics goes here!
+              if (__DEV__) {
                 console.log('[Analytics] Track Screen:', name);
+              }
               };
 
               if (previousRouteName !== currentRouteName) {

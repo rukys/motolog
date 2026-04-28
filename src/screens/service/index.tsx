@@ -132,7 +132,9 @@ export default function ServiceScreen({ navigation, route }: Props) {
         setReceiptPhotos(prev => [...prev, ...result.assets!]);
       }
     } catch (error) {
-      console.error('[ServiceScreen] takeReceiptPhoto failed:', error);
+      if (__DEV__) {
+        console.error('[ServiceScreen] takeReceiptPhoto failed:', error);
+      }
     }
   };
 
@@ -153,7 +155,9 @@ export default function ServiceScreen({ navigation, route }: Props) {
         setReceiptPhotos(prev => [...prev, ...result.assets!]);
       }
     } catch (error) {
-      console.error('[ServiceScreen] pickFromGallery failed:', error);
+      if (__DEV__) {
+        console.error('[ServiceScreen] pickFromGallery failed:', error);
+      }
     }
   };
 
@@ -210,9 +214,10 @@ export default function ServiceScreen({ navigation, route }: Props) {
       } else {
         Alert.alert('Failed to Save', result.error);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const err = error as Error;
       setIsSubmitting(false);
-      Alert.alert('Error', 'Failed to save photos: ' + error.message);
+      Alert.alert('Error', 'Failed to save photos: ' + err.message);
     }
   };
 

@@ -11,7 +11,9 @@ export async function setupNotificationChannel(): Promise<void> {
       vibration: true,
     });
   } catch (error) {
-    console.error('Failed to setup notification channel:', error);
+    if (__DEV__) {
+      console.error('Failed to setup notification channel:', error);
+    }
   }
 }
 
@@ -20,7 +22,9 @@ export async function requestNotificationPermission(): Promise<boolean> {
     const settings = await notifee.requestPermission();
     return settings.authorizationStatus >= 1;
   } catch (error) {
-    console.error('Failed to request permission:', error);
+    if (__DEV__) {
+      console.error('Failed to request permission:', error);
+    }
     return false;
   }
 }
@@ -58,7 +62,9 @@ export async function scheduleTimeReminder(
       }
     );
   } catch (error) {
-    console.error('Failed to schedule time reminder:', error);
+    if (__DEV__) {
+      console.error('Failed to schedule time reminder:', error);
+    }
   }
 }
 
@@ -94,7 +100,9 @@ export async function scheduleWeeklyOdoReminder(): Promise<void> {
       }
     );
   } catch (error) {
-    console.error('Failed to schedule weekly reminder:', error);
+    if (__DEV__) {
+      console.error('Failed to schedule weekly reminder:', error);
+    }
   }
 }
 
@@ -102,7 +110,9 @@ export async function cancelAllReminders(): Promise<void> {
   try {
     await notifee.cancelAllNotifications();
   } catch (error) {
-    console.error('Failed to cancel reminders:', error);
+    if (__DEV__) {
+      console.error('Failed to cancel reminders:', error);
+    }
   }
 }
 
@@ -127,6 +137,8 @@ export async function sendTestNotification(): Promise<void> {
       }
     );
   } catch (error) {
-    console.error('Failed to send test notification:', error);
+    if (__DEV__) {
+      console.error('Failed to send test notification:', error);
+    }
   }
 }

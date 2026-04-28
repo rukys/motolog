@@ -87,7 +87,9 @@ export default function MotorcycleScreen({ navigation }: Props) {
         setPhoto(result.assets[0]);
       }
     } catch (error) {
-      console.error('[MotorcycleScreen] openCamera failed:', error);
+      if (__DEV__) {
+        console.error('[MotorcycleScreen] openCamera failed:', error);
+      }
     }
   };
 
@@ -108,7 +110,9 @@ export default function MotorcycleScreen({ navigation }: Props) {
         setPhoto(result.assets[0]);
       }
     } catch (error) {
-      console.error('[MotorcycleScreen] openGallery failed:', error);
+      if (__DEV__) {
+        console.error('[MotorcycleScreen] openGallery failed:', error);
+      }
     }
   };
 
@@ -140,9 +144,10 @@ export default function MotorcycleScreen({ navigation }: Props) {
       } else {
         Alert.alert('Failed to Save', result.error);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const err = error as Error;
       setIsSubmitting(false);
-      Alert.alert('Error', 'Failed to save photo: ' + error.message);
+      Alert.alert('Error', 'Failed to save photo: ' + err.message);
     }
   };
 

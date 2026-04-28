@@ -50,7 +50,9 @@ export default function ServiceDetailScreen({ navigation, route }: Props) {
     try {
       return JSON.parse(service.items);
     } catch (e) {
-      console.error('Failed to parse service items:', e);
+      if (__DEV__) {
+        console.error('Failed to parse service items:', e);
+      }
       return [];
     }
   }, [service?.items]);

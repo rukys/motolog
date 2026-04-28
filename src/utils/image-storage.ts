@@ -56,7 +56,9 @@ export async function deleteImage(filePath: string): Promise<boolean> {
     }
     return true;
   } catch (error) {
-    console.error('[imageStorage] deleteImage failed:', error);
+    if (__DEV__) {
+      console.error('[imageStorage] deleteImage failed:', error);
+    }
     return false;
   }
 }

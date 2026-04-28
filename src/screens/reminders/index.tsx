@@ -31,6 +31,14 @@ type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList>
 >;
 
+const SHADOW_STYLE = {
+  shadowColor: '#ff6600',
+  shadowOffset: { width: 0, height: 4 },
+  shadowOpacity: 0.3,
+  shadowRadius: 6,
+  elevation: 8,
+};
+
 interface VirtualReminder {
   _id: { toHexString: () => string };
   title: string;
@@ -334,13 +342,7 @@ export default function ReminderListScreen({ navigation }: Props) {
           tw.style(
             'absolute bottom-6 right-6 bg-secondary w-14 h-14 rounded-full items-center justify-center border border-primary/50',
           ),
-          {
-            shadowColor: '#ff6600',
-            shadowOffset: { width: 0, height: 4 },
-            shadowOpacity: 0.3,
-            shadowRadius: 6,
-            elevation: 8,
-          },
+          SHADOW_STYLE,
         ]}>
         <Sparkles size={26} color={tw.color('primary')} />
       </TouchableOpacity>

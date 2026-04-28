@@ -44,8 +44,9 @@ export function useService(motorcycleId?: Realm.BSON.ObjectId) {
           });
         });
         return { success: true, id };
-      } catch (error: any) {
-        return { success: false, error: error.message };
+      } catch (error: unknown) {
+        const err = error as Error;
+        return { success: false, error: err.message };
       }
     },
     [realm]
@@ -59,8 +60,9 @@ export function useService(motorcycleId?: Realm.BSON.ObjectId) {
           if (service) {realm.delete(service);}
         });
         return { success: true };
-      } catch (error: any) {
-        return { success: false, error: error.message };
+      } catch (error: unknown) {
+        const err = error as Error;
+        return { success: false, error: err.message };
       }
     },
     [realm]

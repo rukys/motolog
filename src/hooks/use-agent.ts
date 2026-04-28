@@ -103,7 +103,9 @@ export const useAgent = () => {
         setMessages(prev => [...prev, newAiMessage]);
       }
     } catch (error) {
-      console.error(error);
+      if (__DEV__) {
+        console.error(error);
+      }
       setMessages(prev => [...prev, { id: Date.now().toString(), text: 'Error calling AI', type: 'ai' }]);
     } finally {
       setIsLoading(false);

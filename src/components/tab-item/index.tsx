@@ -18,22 +18,21 @@ const TabItem: React.FC<TabItemProps> = ({
   onPress,
   onLongPress,
 }) => {
-  const Icon = () => {
-    const color = (tw.color(active ? 'primary' : 'darkGrey') as string) || '#888';
+  const color = (tw.color(active ? 'primary' : 'darkGrey') as string) || '#888';
 
-    if (title === 'HomeScreen') {
-      return <Home size={size} color={color} />;
+  const renderIcon = () => {
+    switch (title) {
+      case 'HomeScreen':
+        return <Home size={size} color={color} />;
+      case 'GarageScreen':
+        return <Bike size={size} color={color} />;
+      case 'HistoryScreen':
+        return <History size={size} color={color} />;
+      case 'RemindersScreen':
+        return <Bell size={size} color={color} />;
+      default:
+        return null;
     }
-    if (title === 'GarageScreen') {
-      return <Bike size={size} color={color} />;
-    }
-    if (title === 'HistoryScreen') {
-      return <History size={size} color={color} />;
-    }
-    if (title === 'RemindersScreen') {
-      return <Bell size={size} color={color} />;
-    }
-    return null;
   };
 
   return (
@@ -41,7 +40,7 @@ const TabItem: React.FC<TabItemProps> = ({
       style={tw.style('items-center mb-3')}
       onPress={onPress}
       onLongPress={onLongPress}>
-      <Icon />
+      {renderIcon()}
     </TouchableOpacity>
   );
 };

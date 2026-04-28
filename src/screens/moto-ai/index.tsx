@@ -38,6 +38,14 @@ import Realm from 'realm';
 
 type Props = StackScreenProps<RootStackParamList, 'MotoAIScreen'>;
 
+const SHADOW_STYLE = {
+  shadowColor: '#ff6600',
+  shadowOffset: { width: 0, height: 4 },
+  shadowOpacity: 0.3,
+  shadowRadius: 6,
+  elevation: 8,
+};
+
 interface QuickLogItem {
   category: string;
   estimatedCost?: number;
@@ -518,13 +526,7 @@ export default function MotoAIScreen({ navigation }: Props) {
                 tw.style(
                   'bg-primary rounded-xl p-4 flex-row justify-center items-center',
                 ),
-                {
-                  shadowColor: '#ff6600',
-                  shadowOffset: { width: 0, height: 4 },
-                  shadowOpacity: 0.3,
-                  shadowRadius: 6,
-                  elevation: 8,
-                },
+                SHADOW_STYLE,
               ]}>
               <Check size={20} color={tw.color('white')} />
               <Text style={tw.style('text-white font-montserratBold text-base ml-2')}>

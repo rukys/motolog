@@ -32,6 +32,14 @@ type Props = CompositeScreenProps<
   StackScreenProps<RootStackParamList>
 >;
 
+const SHADOW_STYLE = {
+  shadowColor: '#ff6600',
+  shadowOffset: { width: 0, height: 4 },
+  shadowOpacity: 0.3,
+  shadowRadius: 6,
+  elevation: 8,
+};
+
 export default function HomeScreen({ navigation }: Props) {
   const { motorcycles, motorcycleCount, updateOdometer } = useMotorcycle();
   const { services } = useService();
@@ -375,13 +383,7 @@ export default function HomeScreen({ navigation }: Props) {
           tw.style(
             'absolute bottom-6 right-6 bg-primary w-14 h-14 rounded-full items-center justify-center',
           ),
-          {
-            shadowColor: '#ff6600',
-            shadowOffset: { width: 0, height: 4 },
-            shadowOpacity: 0.3,
-            shadowRadius: 6,
-            elevation: 8,
-          },
+          SHADOW_STYLE,
         ]}>
         <Sparkles size={26} color={tw.color('white')} />
       </TouchableOpacity>

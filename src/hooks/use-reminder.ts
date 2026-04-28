@@ -43,8 +43,9 @@ export function useReminder(motorcycleId?: Realm.BSON.ObjectId) {
           });
         });
         return { success: true, id };
-      } catch (error: any) {
-        return { success: false, error: error.message };
+      } catch (error: unknown) {
+        const err = error as Error;
+        return { success: false, error: err.message };
       }
     },
     [realm]
@@ -61,8 +62,9 @@ export function useReminder(motorcycleId?: Realm.BSON.ObjectId) {
           }
         });
         return { success: true };
-      } catch (error: any) {
-        return { success: false, error: error.message };
+      } catch (error: unknown) {
+        const err = error as Error;
+        return { success: false, error: err.message };
       }
     },
     [realm]
@@ -76,8 +78,9 @@ export function useReminder(motorcycleId?: Realm.BSON.ObjectId) {
           if (reminder) {realm.delete(reminder);}
         });
         return { success: true };
-      } catch (error: any) {
-        return { success: false, error: error.message };
+      } catch (error: unknown) {
+        const err = error as Error;
+        return { success: false, error: err.message };
       }
     },
     [realm]

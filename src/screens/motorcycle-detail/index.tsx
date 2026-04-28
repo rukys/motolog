@@ -28,6 +28,14 @@ import { RootStackParamList } from '../../navigations';
 
 type Props = StackScreenProps<RootStackParamList, 'MotorcycleDetailScreen'>;
 
+const SHADOW_STYLE = {
+  shadowColor: '#ff6600',
+  shadowOffset: { width: 0, height: 4 },
+  shadowOpacity: 0.3,
+  shadowRadius: 6,
+  elevation: 8,
+};
+
 export default function MotorcycleDetailScreen({ navigation, route }: Props) {
   const id = route?.params?.id;
   const { motorcycles } = useMotorcycle();
@@ -307,13 +315,7 @@ export default function MotorcycleDetailScreen({ navigation, route }: Props) {
           tw.style(
             'absolute bottom-6 right-6 bg-primary w-14 h-14 rounded-full items-center justify-center',
           ),
-          {
-            shadowColor: '#ff6600',
-            shadowOffset: { width: 0, height: 4 },
-            shadowOpacity: 0.3,
-            shadowRadius: 6,
-            elevation: 8,
-          },
+          SHADOW_STYLE,
         ]}>
         <Plus size={26} color={tw.color('white')} />
       </TouchableOpacity>
