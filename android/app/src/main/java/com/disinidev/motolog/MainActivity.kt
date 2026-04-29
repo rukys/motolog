@@ -1,4 +1,4 @@
-package com.motolog
+package com.disinidev.motolog
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

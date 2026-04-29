@@ -1,4 +1,4 @@
-package com.motolog
+package com.disinidev.motolog
 
 import android.app.Application
 import com.facebook.react.PackageList
