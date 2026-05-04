@@ -1,0 +1,23 @@
+diff --git a/node_modules/realm/binding/jsi/react_scheduler.cpp b/node_modules/realm/binding/jsi/react_scheduler.cpp
+index 1234567..abcdefg 100644
+--- a/node_modules/realm/binding/jsi/react_scheduler.cpp
++++ b/node_modules/realm/binding/jsi/react_scheduler.cpp
+@@ -25,6 +25,7 @@
+ 
+ #include <thread>
+ 
+ using Scheduler = realm::util::Scheduler;
++namespace jsi = facebook::jsi;
+ 
+ namespace {
+ 
+@@ -56,7 +57,7 @@ public:
+     void invoke(realm::util::UniqueFunction<void()>&& func) override
+     {
+         m_js_call_invoker->invokeAsync(
+             // Using normal priority to avoid blocking rendering, user-input and other higher priority tasks
+-            facebook::react::SchedulerPriority::NormalPriority, [ptr = func.release()] {
++            facebook::react::SchedulerPriority::NormalPriority, [ptr = func.release()](jsi::Runtime&) {
+                 (realm::util::UniqueFunction<void()>(ptr))();
+             });
+     }
