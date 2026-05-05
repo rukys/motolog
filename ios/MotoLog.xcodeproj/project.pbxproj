@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1138B448C0195EB38F090EB8 /* Pods_MotoLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDCDFB7C423748375CB25A9 /* Pods_MotoLog.framework */; };
 		133A5887128F49C4802B6BF9 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45E725AD407B4EC4B785252A /* Montserrat-Medium.ttf */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		1B83669FA1FE4EC6AB93F1CC /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58A006FF959C459392BF5117 /* Montserrat-SemiBoldItalic.ttf */; };
 		1FCCD7A4CDB642C0980620EF /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4B64263DE974DFC8C01B8EE /* Montserrat-Bold.ttf */; };
+		21E93DDE438E56F78BA0B1B4 /* Pods_MotoLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A6EFDF4DEF197B78DDCFC93 /* Pods_MotoLog.framework */; };
 		297034A6E6A649CCB6FD72AD /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F47CDCFC36EF4B0ABFC64381 /* Montserrat-BlackItalic.ttf */; };
 		38C8E11C9EFD462FBCCEF027 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57ED11025BD54FB0B8CF9386 /* Montserrat-Black.ttf */; };
 		3ADF163DF78249D2AD72EC42 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 70B4C4C441E448FABCCE6BB5 /* Montserrat-SemiBold.ttf */; };
@@ -34,7 +34,6 @@
 
 /* Begin PBXFileReference section */
 		01E626D2E07E4C2EB390D28D /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-LightItalic.ttf"; path = "../src/assets/fonts/Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
-		06290C57616BC11BA1A2E0FA /* Pods-MotoLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MotoLog.debug.xcconfig"; path = "Target Support Files/Pods-MotoLog/Pods-MotoLog.debug.xcconfig"; sourceTree = "<group>"; };
 		0CE2E2A79C214478AA49A7F9 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../src/assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* MotoLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotoLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MotoLog/Images.xcassets; sourceTree = "<group>"; };
@@ -42,20 +41,21 @@
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = MotoLog/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		154DD6ADE84D49A4B482E62A /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Thin.ttf"; path = "../src/assets/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		1B852458E50B4B7EB8E02FE2 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Italic.ttf"; path = "../src/assets/fonts/Montserrat-Italic.ttf"; sourceTree = "<group>"; };
+		1B96BF1394295BA06B9DDA69 /* Pods-MotoLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MotoLog.release.xcconfig"; path = "Target Support Files/Pods-MotoLog/Pods-MotoLog.release.xcconfig"; sourceTree = "<group>"; };
 		28BB0B73BAF24B8789C2F8F9 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../src/assets/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
+		2A6EFDF4DEF197B78DDCFC93 /* Pods_MotoLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MotoLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E725AD407B4EC4B785252A /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../src/assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		50C64AD1F6C3470FAE42DDB8 /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-MediumItalic.ttf"; path = "../src/assets/fonts/Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
 		51E5313E34564CADBCC72A14 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../src/assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		568AD6668B474797918400C0 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BoldItalic.ttf"; path = "../src/assets/fonts/Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
 		57ED11025BD54FB0B8CF9386 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Black.ttf"; path = "../src/assets/fonts/Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		58A006FF959C459392BF5117 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBoldItalic.ttf"; path = "../src/assets/fonts/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
-		6A0698B7DC3EBB3E65531DA7 /* Pods-MotoLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MotoLog.release.xcconfig"; path = "Target Support Files/Pods-MotoLog/Pods-MotoLog.release.xcconfig"; sourceTree = "<group>"; };
 		6C7503828B28424FB7FCC5A3 /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLightItalic.ttf"; path = "../src/assets/fonts/Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		70B4C4C441E448FABCCE6BB5 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../src/assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MotoLog/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MotoLog/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8EDCDFB7C423748375CB25A9 /* Pods_MotoLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MotoLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90FD1751ABD94AFD82C52009 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../src/assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		96CE1D8CF6E0AFAF1A651A0A /* Pods-MotoLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MotoLog.debug.xcconfig"; path = "Target Support Files/Pods-MotoLog/Pods-MotoLog.debug.xcconfig"; sourceTree = "<group>"; };
 		AF89FAC253E8435E8DDCC29D /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../src/assets/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
 		D4B64263DE974DFC8C01B8EE /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../src/assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		D7894C9FBE3540C1991026CA /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../src/assets/fonts/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1138B448C0195EB38F090EB8 /* Pods_MotoLog.framework in Frameworks */,
+				21E93DDE438E56F78BA0B1B4 /* Pods_MotoLog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				8EDCDFB7C423748375CB25A9 /* Pods_MotoLog.framework */,
+				2A6EFDF4DEF197B78DDCFC93 /* Pods_MotoLog.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -129,8 +129,8 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				06290C57616BC11BA1A2E0FA /* Pods-MotoLog.debug.xcconfig */,
-				6A0698B7DC3EBB3E65531DA7 /* Pods-MotoLog.release.xcconfig */,
+				96CE1D8CF6E0AFAF1A651A0A /* Pods-MotoLog.debug.xcconfig */,
+				1B96BF1394295BA06B9DDA69 /* Pods-MotoLog.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -168,13 +168,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MotoLog" */;
 			buildPhases = (
-				C8013CFFAB6DFAD5009F1A2A /* [CP] Check Pods Manifest.lock */,
+				CFB0532A4FE66DD8E8A0F00A /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				0C9BF8A020019CC87EE56BDD /* [CP] Embed Pods Frameworks */,
-				F3FB98A11DFF98B5890F90AB /* [CP] Copy Pods Resources */,
+				55CDD6F6E4F884958EB373CD /* [CP] Embed Pods Frameworks */,
+				C7B5C05C9581D397CC59FC55 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -264,7 +264,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		0C9BF8A020019CC87EE56BDD /* [CP] Embed Pods Frameworks */ = {
+		55CDD6F6E4F884958EB373CD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -281,7 +281,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MotoLog/Pods-MotoLog-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C8013CFFAB6DFAD5009F1A2A /* [CP] Check Pods Manifest.lock */ = {
+		C7B5C05C9581D397CC59FC55 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MotoLog/Pods-MotoLog-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MotoLog/Pods-MotoLog-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MotoLog/Pods-MotoLog-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CFB0532A4FE66DD8E8A0F00A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -303,23 +320,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F3FB98A11DFF98B5890F90AB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MotoLog/Pods-MotoLog-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MotoLog/Pods-MotoLog-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MotoLog/Pods-MotoLog-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -336,7 +336,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06290C57616BC11BA1A2E0FA /* Pods-MotoLog.debug.xcconfig */;
+			baseConfigurationReference = 96CE1D8CF6E0AFAF1A651A0A /* Pods-MotoLog.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -364,7 +364,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A0698B7DC3EBB3E65531DA7 /* Pods-MotoLog.release.xcconfig */;
+			baseConfigurationReference = 1B96BF1394295BA06B9DDA69 /* Pods-MotoLog.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

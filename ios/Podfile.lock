@@ -1722,7 +1722,7 @@ PODS:
     - React-logger (= 0.79.0)
     - React-perflogger (= 0.79.0)
     - React-utils (= 0.79.0)
-  - RealmJS (12.12.1):
+  - RealmJS (12.13.0):
     - React
   - RNCAsyncStorage (2.2.0):
     - React-Core
@@ -1732,7 +1732,7 @@ PODS:
     - SDWebImageWebPCoder (~> 0.8.4)
   - RNFS (2.20.0):
     - React-Core
-  - RNGestureHandler (2.30.0):
+  - RNGestureHandler (2.31.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1761,7 +1761,7 @@ PODS:
     - RNNotifee/NotifeeCore (= 9.1.8)
   - RNNotifee/NotifeeCore (9.1.8):
     - React-Core
-  - RNPermissions (5.5.0):
+  - RNPermissions (5.5.1):
     - React-Core
   - RNReanimated (3.17.5):
     - DoubleConversion
@@ -1936,7 +1936,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNSVG (15.15.3):
+  - RNSVG (15.15.4):
     - React-Core
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
@@ -2295,22 +2295,22 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: 7f5052913dd72a0e84ca95973f9f8bc97f2c5b95
   ReactCodegen: 432ab44c696f7dc8ef0641281012ad3c191e3f89
   ReactCommon: 4f0e046f6c9abecc017956dbfdbaddd331afa0ea
-  RealmJS: 9909d5374e8251081b8b676e3a1ba088e2be7d84
+  RealmJS: 4288de83278253008a2f42e3894420285dd766ca
   RNCAsyncStorage: b44e8a4e798c3e1f56bffccd0f591f674fb9198f
   RNFastImage: 462a183c4b0b6b26fdfd639e1ed6ba37536c3b87
   RNFS: 89de7d7f4c0f6bafa05343c578f61118c8282ed8
-  RNGestureHandler: 38fe57ac2140d180551591a16bd899d2343724bb
+  RNGestureHandler: 0b640ac44537c2bbe1b3671372a33270ed081651
   RNNotifee: 5e3b271e8ea7456a36eec994085543c9adca9168
-  RNPermissions: 3d6a63deaf5cab1767d1ba4561bdeeede16ab51c
+  RNPermissions: f5d167334568b0be0bf0f6c8bbf373b9ebfa9376
   RNReanimated: 8442cd220122765de7d858946846a7513e40fe04
   RNScreens: 1ab3bef959f7cd731ad5a1d6a66ea580a05d62a2
   RNShare: 45bdbdcca6f5c516f9360af82db1fb75416bf1b3
-  RNSVG: 60affcbb320db7b83a139737d4dbe15c1068f109
+  RNSVG: c8ba193e7bea6983ebdf544a6ee7b0f706c64559
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageWebPCoder: 908b83b6adda48effe7667cd2b7f78c897e5111d
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: df4e6df930f6d93d6647c10c61d4d6fe5a694805
 
-PODFILE CHECKSUM: f5cd02f092127441d26f837cf83eb84e73561330
+PODFILE CHECKSUM: 4b0ea83c13e4c426d5e6d1b0b7b735d1baa7ea33
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.15.2
